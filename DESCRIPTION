@@ -1,0 +1,14 @@
+Package: swasi
+Type: Package
+Title: This Package Helps Import and Clean Base-Level Data From the Student Wellbeing and Success Initiative Survey
+Version: 0.1.0
+Author: Anwesha Guha
+Maintainer: Anwesha Guha <aguha@uoregon.edu>
+Description: This package consolidates the functions needed to clean and interpret SWASI data.
+    This package intends to serve the Office of Assessment and Research under the Division of Student Life at the University of Oregon. 
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports: tidyverse,
+         janitor
+RoxygenNote: 7.2.3
