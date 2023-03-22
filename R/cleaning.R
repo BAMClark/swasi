@@ -43,7 +43,7 @@ clean_data <- function(df, beg_row = 1, end_row = 2) {
 
   dat_clean <- df %>%
     janitor::clean_names() %>%
-    filter(!row_number() %in% c(beg_row:end_row)) %>%
+    filter(!(row_number() %in% c(beg_row:end_row))) %>%
     distinct(external_reference, .keep_all = TRUE)
 
   return(dat_clean)
