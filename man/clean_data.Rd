@@ -10,9 +10,14 @@ clean_data(df, beg_row = 1, end_row = 2)
 \item{df, beg_row, end_row}{Input dataframe, start row defaults to 1 and end row defaults to 2}
 }
 \value{
-df
+cleaned dataframe
 }
 \description{
-This function functions as the mean function, only calculates the mean with
-NAs removed. If data has NAs, there will no longer be an error.
+Step 2
+}
+\details{
+This function removes the first two rows of the dataset which has name and
+description information for each variable. All variable names are
+standardized to lowercase and separated by underscores using the janitor
+package dependency. Repeated IDs are removed.
 }

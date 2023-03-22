@@ -10,9 +10,13 @@ create_codebook(df, year, path = "")
 \item{df, year, path}{Input dataframe, year of analysis, and path to save file}
 }
 \value{
-df
+codebook dataframe
 }
 \description{
-This function functions as the mean function, only calculates the mean with
-NAs removed. If data has NAs, there will no longer be an error.
+Step 1
+}
+\details{
+This function creates a codebook with the first two rows from the survey,
+which has the name and description of each variable. This function
+should be run first.
 }

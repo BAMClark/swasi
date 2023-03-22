@@ -2,16 +2,21 @@
 % Please edit documentation in R/cleaning.R
 \name{deidentify}
 \alias{deidentify}
-\title{Create Deidentified file}
+\title{Create De-identified file}
 \usage{
-deidentify(df, year, path = "")
+deidentify(df1, df2, year, path = "")
 }
 \arguments{
-\item{df, year, path}{Input dataframe, year of analysis, and path to save file}
+\item{df1, df2, year, path}{Input df1 = original key, df2 = new dataframe, year of analysis, and path}
 }
 \value{
 df, also exported file
 }
 \description{
-This function removed identifiers from the dataframe.
+Step 4
+}
+\details{
+This function removed identifiers from the dataframe and adds baseline ID and
+cohort column, useful for future analysis. Extraneous 86000000 numbers are
+also removed from the ID column.
 }

@@ -13,5 +13,10 @@ update_reference(df1, df2, year, path = "")
 original llave, modifed, and updated llave with added rows and IDs
 }
 \description{
-This function updates and creates new reference files.
+Step 3
+}
+\details{
+This function updates and creates new reference files using the original
+key and new dataframe. The new key with added rows and IDs is produced, and
+the original key file is modified with the year of update.
 }
