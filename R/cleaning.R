@@ -16,7 +16,7 @@ create_codebook <- function(df, year, path = ""){
 
   key_code
 
-  write_csv(
+  write.csv(
     key_code,
     paste0(
       path,
@@ -90,7 +90,7 @@ update_reference <- function(df1, df2, year, path = ""){
   update <- bind_rows(original_llave, id)
   update
 
-  write_csv(
+  write.csv(
     original_llave,
     paste0(
       path,
@@ -98,7 +98,7 @@ update_reference <- function(df1, df2, year, path = ""){
       year,
       ".csv" ))
 
-  write_csv(
+  write.csv(
     update,
     paste0(
       path,
@@ -149,7 +149,7 @@ deidentify <- function(df1, df2, year, path = "") {
       -location_latitude, -location_longitude, -pidm
     )
 
-  write_csv(
+  write.csv(
     raw,
     paste0(
       path,
@@ -187,7 +187,7 @@ separate_consent <- function(df, year, path = "") {
     filter(c_dat != "Yes")
 
 
-  write_csv(
+  write.csv(
     consented,
     paste0(
       path,
@@ -196,7 +196,7 @@ separate_consent <- function(df, year, path = "") {
       ".csv"
     ))
 
-  write_csv(
+  write.csv(
     not_consented,
     paste0(
       path,
