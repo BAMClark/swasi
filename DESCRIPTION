@@ -9,6 +9,6 @@ Description: This package consolidates the functions needed to clean and interpr
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-Imports: tidyverse,
+Depends: tidyverse, magrittr,
          janitor
 RoxygenNote: 7.2.3
