@@ -14,8 +14,6 @@ create_codebook <- function(df, year, path = ""){
   key_code = data.frame(unlist(colnames(df)), unlist(df[1, ], use.names = FALSE))
   names(key_code) = c("name", "description")
 
-  key_code
-
   write.csv(
     key_code,
     paste0(
@@ -25,7 +23,7 @@ create_codebook <- function(df, year, path = ""){
       ".csv"
     )
   )
-
+ return(key_code)
 }
 
 
@@ -48,7 +46,7 @@ clean_data <- function(df, beg_row = 1, end_row = 2) {
     filter(!row_number() %in% c(beg_row:end_row)) %>%
     distinct(external_reference, .keep_all = TRUE)
 
-  dat_clean
+  return(dat_clean)
 }
 
 
@@ -88,7 +86,8 @@ update_reference <- function(df1, df2, year, path = ""){
   id$pidm <- as.numeric(id$pidm)
 
   update <- bind_rows(original_llave, id)
-  update
+
+  return(update)
 
   write.csv(
     original_llave,
@@ -157,6 +156,8 @@ deidentify <- function(df1, df2, year, path = "") {
       year,
       ".csv"
     ))
+
+  return(raw)
 }
 
 
@@ -205,7 +206,7 @@ separate_consent <- function(df, year, path = "") {
       ".csv"
     ))
 
-  consent_prep
+  return(consent_prep)
 }
 
 
@@ -239,5 +240,5 @@ completion_status <- function(df, lower_bound = 3, upper_bound = 95) {
         )
       )
     )
-  df_complete
+  return(df_complete)
 }

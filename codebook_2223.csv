@@ -1,0 +1,776 @@
+"","name","description"
+"1","StartDate","Start Date"
+"2","EndDate","End Date"
+"3","Status","Response Type"
+"4","IPAddress","IP Address"
+"5","Progress","Progress"
+"6","Duration..in.seconds.","Duration (in seconds)"
+"7","Finished","Finished"
+"8","RecordedDate","Recorded Date"
+"9","ResponseId","Response ID"
+"10","RecipientLastName","Recipient Last Name"
+"11","RecipientFirstName","Recipient First Name"
+"12","RecipientEmail","Recipient Email"
+"13","ExternalReference","External Data Reference"
+"14","LocationLatitude","Location Latitude"
+"15","LocationLongitude","Location Longitude"
+"16","DistributionChannel","Distribution Channel"
+"17","UserLanguage","User Language"
+"18","browser_Browser","Click to write the question text - Browser"
+"19","browser_Version","Click to write the question text - Version"
+"20","browser_Operating.System","Click to write the question text - Operating System"
+"21","browser_Resolution","Click to write the question text - Resolution"
+"22","t.ins_First.Click","Timing - First Click"
+"23","t.ins_Last.Click","Timing - Last Click"
+"24","t.ins_Page.Submit","Timing - Page Submit"
+"25","t.ins_Click.Count","Timing - Click Count"
+"26","c.dat","Answering “Yes” below means we may use your data in our research and answering “No” means we may not."
+"27","bu.1","I’m unsure that I belong at UO."
+"28","bu.2","I sometimes feel that people at UO do not accept me."
+"29","bu.3","I worry that I am an outsider at UO."
+"30","bu.4","I am anxious about whether I fit in socially at UO."
+"31","au.1","I worry my abilities are not good enough to do well at UO."
+"32","au.2","I often wonder if I have what it takes to succeed at UO."
+"33","au.4","I worry that no matter how hard I try, I won't be able to perform
+successfully at UO."
+"34","au.5","I'm not sure that I'm cut out for UO."
+"35","t.bau_First.Click","Timing - First Click"
+"36","t.bau_Last.Click","Timing - Last Click"
+"37","t.bau_Page.Submit","Timing - Page Submit"
+"38","t.bau_Click.Count","Timing - Click Count"
+"39","stt.1","At the UO, I worry that people draw conclusions about people like me, based on my performances."
+"40","stt.2","At the UO, I worry that people draw conclusions about people like me, based on the performances of other people with similar identities."
+"41","stt.3","At the UO, I worry that people draw conclusions about me, based on what they think about people with backgrounds like mine."
+"42","stt.4","At the UO, I worry that people draw conclusions about me, based on the performances of other people like me."
+"43","t.stt_First.Click","Timing - First Click"
+"44","t.stt_Last.Click","Timing - Last Click"
+"45","t.stt_Page.Submit","Timing - Page Submit"
+"46","t.stt_Click.Count","Timing - Click Count"
+"47","t.ov.1_First.Click","Timing - First Click"
+"48","t.ov.1_Last.Click","Timing - Last Click"
+"49","t.ov.1_Page.Submit","Timing - Page Submit"
+"50","t.ov.1_Click.Count","Timing - Click Count"
+"51","t.ov.2_First.Click","Timing - First Click"
+"52","t.ov.2_Last.Click","Timing - Last Click"
+"53","t.ov.2_Page.Submit","Timing - Page Submit"
+"54","t.ov.2_Click.Count","Timing - Click Count"
+"55","t.ov.3.c_First.Click","Timing - First Click"
+"56","t.ov.3.c_Last.Click","Timing - Last Click"
+"57","t.ov.3.c_Page.Submit","Timing - Page Submit"
+"58","t.ov.3.c_Click.Count","Timing - Click Count"
+"59","t.ov.4.c_First.Click","Timing - First Click"
+"60","t.ov.4.c_Last.Click","Timing - Last Click"
+"61","t.ov.4.c_Page.Submit","Timing - Page Submit"
+"62","t.ov.4.c_Click.Count","Timing - Click Count"
+"63","t.csum.1_First.Click","Timing - First Click"
+"64","t.csum.1_Last.Click","Timing - Last Click"
+"65","t.csum.1_Page.Submit","Timing - Page Submit"
+"66","t.csum.1_Click.Count","Timing - Click Count"
+"67","t.crs.ins_First.Click","Timing - First Click"
+"68","t.crs.ins_Last.Click","Timing - Last Click"
+"69","t.crs.ins_Page.Submit","Timing - Page Submit"
+"70","t.crs.ins_Click.Count","Timing - Click Count"
+"71","t.crs.1_First.Click","Timing - First Click"
+"72","t.crs.1_Last.Click","Timing - Last Click"
+"73","t.crs.1_Page.Submit","Timing - Page Submit"
+"74","t.crs.1_Click.Count","Timing - Click Count"
+"75","t.crs.2_First.Click","Timing - First Click"
+"76","t.crs.2_Last.Click","Timing - Last Click"
+"77","t.crs.2_Page.Submit","Timing - Page Submit"
+"78","t.crs.2_Click.Count","Timing - Click Count"
+"79","t.crs.3_First.Click","Timing - First Click"
+"80","t.crs.3_Last.Click","Timing - Last Click"
+"81","t.crs.3_Page.Submit","Timing - Page Submit"
+"82","t.crs.3_Click.Count","Timing - Click Count"
+"83","t.crs.4_First.Click","Timing - First Click"
+"84","t.crs.4_Last.Click","Timing - Last Click"
+"85","t.crs.4_Page.Submit","Timing - Page Submit"
+"86","t.crs.4_Click.Count","Timing - Click Count"
+"87","t.crs.5_First.Click","Timing - First Click"
+"88","t.crs.5_Last.Click","Timing - Last Click"
+"89","t.crs.5_Page.Submit","Timing - Page Submit"
+"90","t.crs.5_Click.Count","Timing - Click Count"
+"91","t.crs.6_First.Click","Timing - First Click"
+"92","t.crs.6_Last.Click","Timing - Last Click"
+"93","t.crs.6_Page.Submit","Timing - Page Submit"
+"94","t.crs.6_Click.Count","Timing - Click Count"
+"95","t.crs.7_First.Click","Timing - First Click"
+"96","t.crs.7_Last.Click","Timing - Last Click"
+"97","t.crs.7_Page.Submit","Timing - Page Submit"
+"98","t.crs.7_Click.Count","Timing - Click Count"
+"99","t.crs.8_First.Click","Timing - First Click"
+"100","t.crs.8_Last.Click","Timing - Last Click"
+"101","t.crs.8_Page.Submit","Timing - Page Submit"
+"102","t.crs.8_Click.Count","Timing - Click Count"
+"103","t.csum.2_First.Click","Timing - First Click"
+"104","t.csum.2_Last.Click","Timing - Last Click"
+"105","t.csum.2_Page.Submit","Timing - Page Submit"
+"106","t.csum.2_Click.Count","Timing - Click Count"
+"107","ce","Your Thoughts About Coming to University of Oregon
+
+
+
+We know that you are excited to come to UO and we can’t wait for you to join us! To help us help future students have a smoother transition, we would like to learn more from you and your classmates about why this would be so. That is, why might students initially pay attention to the physical environment of UO but ultimately become more familiar with it and pay less attention to it?
+
+ 
+As you reflect and write, please illustrate your description with examples from your own thoughts about coming to UO or Eugene. You may also draw on your past experiences and on the stories you just read, which are copied below.  
+
+ 
+
+Note: Your essay may be provided, anonymously, to incoming UO students in future years to help give them a better understanding of what coming to UO is like. The more you can describe what you anticipate experiencing the more future students will benefit. Thank you for your time and effort."
+"108","t.ce_First.Click","Timing - First Click"
+"109","t.ce_Last.Click","Timing - Last Click"
+"110","t.ce_Page.Submit","Timing - Page Submit"
+"111","t.ce_Click.Count","Timing - Click Count"
+"112","t.ov.3.sb_First.Click","Timing - First Click"
+"113","t.ov.3.sb_Last.Click","Timing - Last Click"
+"114","t.ov.3.sb_Page.Submit","Timing - Page Submit"
+"115","t.ov.3.sb_Click.Count","Timing - Click Count"
+"116","t.ov.4.sb_First.Click","Timing - First Click"
+"117","t.ov.4.sb_Last.Click","Timing - Last Click"
+"118","t.ov.4.sb_Page.Submit","Timing - Page Submit"
+"119","t.ov.4.sb_Click.Count","Timing - Click Count"
+"120","t.sbsum.1_First.Click","Timing - First Click"
+"121","t.sbsum.1_Last.Click","Timing - Last Click"
+"122","t.sbsum.1_Page.Submit","Timing - Page Submit"
+"123","t.sbsum.1_Click.Count","Timing - Click Count"
+"124","t.sbrs.ins_First.Click","Timing - First Click"
+"125","t.sbrs.ins_Last.Click","Timing - Last Click"
+"126","t.sbrs.ins_Page.Submit","Timing - Page Submit"
+"127","t.sbrs.ins_Click.Count","Timing - Click Count"
+"128","t.sbrs.1_First.Click","Timing - First Click"
+"129","t.sbrs.1_Last.Click","Timing - Last Click"
+"130","t.sbrs.1_Page.Submit","Timing - Page Submit"
+"131","t.sbrs.1_Click.Count","Timing - Click Count"
+"132","t.sbrs.2_First.Click","Timing - First Click"
+"133","t.sbrs.2_Last.Click","Timing - Last Click"
+"134","t.sbrs.2_Page.Submit","Timing - Page Submit"
+"135","t.sbrs.2_Click.Count","Timing - Click Count"
+"136","t.sbrs.3_First.Click","Timing - First Click"
+"137","t.sbrs.3_Last.Click","Timing - Last Click"
+"138","t.sbrs.3_Page.Submit","Timing - Page Submit"
+"139","t.sbrs.3_Click.Count","Timing - Click Count"
+"140","t.sbrs.4_First.Click","Timing - First Click"
+"141","t.sbrs.4_Last.Click","Timing - Last Click"
+"142","t.sbrs.4_Page.Submit","Timing - Page Submit"
+"143","t.sbrs.4_Click.Count","Timing - Click Count"
+"144","t.sbrs.5_First.Click","Timing - First Click"
+"145","t.sbrs.5_Last.Click","Timing - Last Click"
+"146","t.sbrs.5_Page.Submit","Timing - Page Submit"
+"147","t.sbrs.5_Click.Count","Timing - Click Count"
+"148","t.sbrs.6_First.Click","Timing - First Click"
+"149","t.sbrs.6_Last.Click","Timing - Last Click"
+"150","t.sbrs.6_Page.Submit","Timing - Page Submit"
+"151","t.sbrs.6_Click.Count","Timing - Click Count"
+"152","t.sbrs.7_First.Click","Timing - First Click"
+"153","t.sbrs.7_Last.Click","Timing - Last Click"
+"154","t.sbrs.7_Page.Submit","Timing - Page Submit"
+"155","t.sbrs.7_Click.Count","Timing - Click Count"
+"156","t.sbrs.8_First.Click","Timing - First Click"
+"157","t.sbrs.8_Last.Click","Timing - Last Click"
+"158","t.sbrs.8_Page.Submit","Timing - Page Submit"
+"159","t.sbrs.8_Click.Count","Timing - Click Count"
+"160","t.sbrs.9_First.Click","Timing - First Click"
+"161","t.sbrs.9_Last.Click","Timing - Last Click"
+"162","t.sbrs.9_Page.Submit","Timing - Page Submit"
+"163","t.sbrs.9_Click.Count","Timing - Click Count"
+"164","t.sbsum.2_First.Click","Timing - First Click"
+"165","t.sbsum.2_Last.Click","Timing - Last Click"
+"166","t.sbsum.2_Page.Submit","Timing - Page Submit"
+"167","t.sbsum.2_Click.Count","Timing - Click Count"
+"168","sbe","Your Thoughts About Coming to University of Oregon
+
+ 
+
+We know that you are excited to come to UO and we can’t wait for you to join us! To l help us help future students have a smoother transition, we would like to learn more from you and your classmates about the common worries and challenges students face when they come to UO and how students overcome these challenges.         
+
+ 
+
+In the space below please describe the thoughts, feelings, and worries you have as you prepare to come to UO.     
+
+ 
+
+Please describe:
+
+
+
+	Worries you have about fitting in and belonging as you prepare to come to UO       
+	Why these worries are likely to be common when students go to college   
+	Why students typically feel more at home on campus with time          
+	What students can do to feel more at home, e.g., as they get to know friends and professors
+
+
+ 
+As you reflect and write, please consider specific experiences you will have at UO during your first year like living in a residence hall, meeting new people, joining student groups, interacting with professors, and taking college classes.    
+
+ 
+
+You may also draw on your past experiences with other transitions (like starting high school or going to a summer program) and on the stories from the older students you just read, which are copied below. Please take as much time as you like.    
+
+ 
+
+Note: Your essay may be provided, anonymously, to incoming UO students in future years to help give them a better understanding of what coming to college is like. The more you can describe the challenges you anticipate facing in coming to college and how you can respond to these challenges over time, the more future students will benefit. Thank you for your time and effort."
+"169","t.sbe_First.Click","Timing - First Click"
+"170","t.sbe_Last.Click","Timing - Last Click"
+"171","t.sbe_Page.Submit","Timing - Page Submit"
+"172","t.sbe_Click.Count","Timing - Click Count"
+"173","t.ov.3.defg_First.Click","Timing - First Click"
+"174","t.ov.3.defg_Last.Click","Timing - Last Click"
+"175","t.ov.3.defg_Page.Submit","Timing - Page Submit"
+"176","t.ov.3.defg_Click.Count","Timing - Click Count"
+"177","t.ov.4.defg_First.Click","Timing - First Click"
+"178","t.ov.4.defg_Last.Click","Timing - Last Click"
+"179","t.ov.4.defg_Page.Submit","Timing - Page Submit"
+"180","t.ov.4.defg_Click.Count","Timing - Click Count"
+"181","t.defgsum.1_First.Click","Timing - First Click"
+"182","t.defgsum.1_Last.Click","Timing - Last Click"
+"183","t.defgsum.1_Page.Submit","Timing - Page Submit"
+"184","t.defgsum.1_Click.Count","Timing - Click Count"
+"185","t.defg.ins_First.Click","Timing - First Click"
+"186","t.defg.ins_Last.Click","Timing - Last Click"
+"187","t.defg.ins_Page.Submit","Timing - Page Submit"
+"188","t.defg.ins_Click.Count","Timing - Click Count"
+"189","t.defgrs.ins.1_First.Click","Timing - First Click"
+"190","t.defgrs.ins.1_Last.Click","Timing - Last Click"
+"191","t.defgrs.ins.1_Page.Submit","Timing - Page Submit"
+"192","t.defgrs.ins.1_Click.Count","Timing - Click Count"
+"193","t.defgrs.1_First.Click","Timing - First Click"
+"194","t.defgrs.1_Last.Click","Timing - Last Click"
+"195","t.defgrs.1_Page.Submit","Timing - Page Submit"
+"196","t.defgrs.1_Click.Count","Timing - Click Count"
+"197","t.defgrs.2_First.Click","Timing - First Click"
+"198","t.defgrs.2_Last.Click","Timing - Last Click"
+"199","t.defgrs.2_Page.Submit","Timing - Page Submit"
+"200","t.defgrs.2_Click.Count","Timing - Click Count"
+"201","t.defgrs.3_First.Click","Timing - First Click"
+"202","t.defgrs.3_Last.Click","Timing - Last Click"
+"203","t.defgrs.3_Page.Submit","Timing - Page Submit"
+"204","t.defgrs.3_Click.Count","Timing - Click Count"
+"205","t.defgrs.4_First.Click","Timing - First Click"
+"206","t.defgrs.4_Last.Click","Timing - Last Click"
+"207","t.defgrs.4_Page.Submit","Timing - Page Submit"
+"208","t.defgrs.4_Click.Count","Timing - Click Count"
+"209","t.defgrs.5_First.Click","Timing - First Click"
+"210","t.defgrs.5_Last.Click","Timing - Last Click"
+"211","t.defgrs.5_Page.Submit","Timing - Page Submit"
+"212","t.defgrs.5_Click.Count","Timing - Click Count"
+"213","t.defgrs.6_First.Click","Timing - First Click"
+"214","t.defgrs.6_Last.Click","Timing - Last Click"
+"215","t.defgrs.6_Page.Submit","Timing - Page Submit"
+"216","t.defgrs.6_Click.Count","Timing - Click Count"
+"217","t.defgrs.7_First.Click","Timing - First Click"
+"218","t.defgrs.7_Last.Click","Timing - Last Click"
+"219","t.defgrs.7_Page.Submit","Timing - Page Submit"
+"220","t.defgrs.7_Click.Count","Timing - Click Count"
+"221","t.defgrs.8_First.Click","Timing - First Click"
+"222","t.defgrs.8_Last.Click","Timing - Last Click"
+"223","t.defgrs.8_Page.Submit","Timing - Page Submit"
+"224","t.defgrs.8_Click.Count","Timing - Click Count"
+"225","t.defgrs.9_First.Click","Timing - First Click"
+"226","t.defgrs.9_Last.Click","Timing - Last Click"
+"227","t.defgrs.9_Page.Submit","Timing - Page Submit"
+"228","t.defgrs.9_Click.Count","Timing - Click Count"
+"229","t.defgrs.10_First.Click","Timing - First Click"
+"230","t.defgrs.10_Last.Click","Timing - Last Click"
+"231","t.defgrs.10_Page.Submit","Timing - Page Submit"
+"232","t.defgrs.10_Click.Count","Timing - Click Count"
+"233","t.defgrs.ins.2_First.Click","Timing - First Click"
+"234","t.defgrs.ins.2_Last.Click","Timing - Last Click"
+"235","t.defgrs.ins.2_Page.Submit","Timing - Page Submit"
+"236","t.defgrs.ins.2_Click.Count","Timing - Click Count"
+"237","t.defgrs.11_First.Click","Timing - First Click"
+"238","t.defgrs.11_Last.Click","Timing - Last Click"
+"239","t.defgrs.11_Page.Submit","Timing - Page Submit"
+"240","t.defgrs.11_Click.Count","Timing - Click Count"
+"241","t.defgrs.12_First.Click","Timing - First Click"
+"242","t.defgrs.12_Last.Click","Timing - Last Click"
+"243","t.defgrs.12_Page.Submit","Timing - Page Submit"
+"244","t.defgrs.12_Click.Count","Timing - Click Count"
+"245","t.defgrs.13_First.Click","Timing - First Click"
+"246","t.defgrs.13_Last.Click","Timing - Last Click"
+"247","t.defgrs.13_Page.Submit","Timing - Page Submit"
+"248","t.defgrs.13_Click.Count","Timing - Click Count"
+"249","t.defgrs.14_First.Click","Timing - First Click"
+"250","t.defgrs.14_Last.Click","Timing - Last Click"
+"251","t.defgrs.14_Page.Submit","Timing - Page Submit"
+"252","t.defgrs.14_Click.Count","Timing - Click Count"
+"253","t.defgrs.15_First.Click","Timing - First Click"
+"254","t.defgrs.15_Last.Click","Timing - Last Click"
+"255","t.defgrs.15_Page.Submit","Timing - Page Submit"
+"256","t.defgrs.15_Click.Count","Timing - Click Count"
+"257","t.defgrs.16_First.Click","Timing - First Click"
+"258","t.defgrs.16_Last.Click","Timing - Last Click"
+"259","t.defgrs.16_Page.Submit","Timing - Page Submit"
+"260","t.defgrs.16_Click.Count","Timing - Click Count"
+"261","t.defgrs.17_First.Click","Timing - First Click"
+"262","t.defgrs.17_Last.Click","Timing - Last Click"
+"263","t.defgrs.17_Page.Submit","Timing - Page Submit"
+"264","t.defgrs.17_Click.Count","Timing - Click Count"
+"265","t.defgrs.18_First.Click","Timing - First Click"
+"266","t.defgrs.18_Last.Click","Timing - Last Click"
+"267","t.defgrs.18_Page.Submit","Timing - Page Submit"
+"268","t.defgrs.18_Click.Count","Timing - Click Count"
+"269","t.defgrs.19_First.Click","Timing - First Click"
+"270","t.defgrs.19_Last.Click","Timing - Last Click"
+"271","t.defgrs.19_Page.Submit","Timing - Page Submit"
+"272","t.defgrs.19_Click.Count","Timing - Click Count"
+"273","t.defgrs.20_First.Click","Timing - First Click"
+"274","t.defgrs.20_Last.Click","Timing - Last Click"
+"275","t.defgrs.20_Page.Submit","Timing - Page Submit"
+"276","t.defgrs.20_Click.Count","Timing - Click Count"
+"277","t.defgsum.2_First.Click","Timing - First Click"
+"278","t.defgsum.2_Last.Click","Timing - Last Click"
+"279","t.defgsum.2_Page.Submit","Timing - Page Submit"
+"280","t.defgsum.2_Click.Count","Timing - Click Count"
+"281","defge","Your Thoughts About Coming to University of Oregon
+
+ 
+
+We know that you are excited to come to UO and we can’t wait for you to join us! To help us help future students have a smoother transition, we would like to learn more from you and your classmates about the common worries and challenges students face when they come to UO and how students overcome these challenges.         
+
+ 
+
+In the space below please describe the thoughts, feelings, and worries you have as you prepare to come to UO.     
+
+ 
+
+Please describe:
+
+
+
+	Thoughts you have about how your background may influence your experiences coming to UO
+	Strategies you might use to be successful at UO
+	Resources you could rely on for help and support when you need it
+
+
+ 
+As you reflect and write, please consider specific experiences you will have at UO during your first year like living in a residence hall, meeting new people, joining student groups, interacting with professors, and taking classes.    
+
+ 
+
+You may also draw on your past experiences with other transitions (like starting high school or going to a summer program) and on the stories you just read, which are copied below. Please take as much time as you like.    
+
+ 
+
+Note: Your essay may be provided, anonymously, to incoming UO students in future years to help give them a better understanding of what coming to UO is like. The more you can describe the challenges you anticipate facing in coming to UO and how you can respond to these challenges over time, the more future students will benefit. Thank you for your time and effort."
+"282","t.ov.3.dent_First.Click","Timing - First Click"
+"283","t.ov.3.dent_Last.Click","Timing - Last Click"
+"284","t.ov.3.dent_Page.Submit","Timing - Page Submit"
+"285","t.ov.3.dent_Click.Count","Timing - Click Count"
+"286","t.ov.4.dent_First.Click","Timing - First Click"
+"287","t.ov.4.dent_Last.Click","Timing - Last Click"
+"288","t.ov.4.dent_Page.Submit","Timing - Page Submit"
+"289","t.ov.4.dent_Click.Count","Timing - Click Count"
+"290","t.dentsum.1_First.Click","Timing - First Click"
+"291","t.dentsum.1_Last.Click","Timing - Last Click"
+"292","t.dentsum.1_Page.Submit","Timing - Page Submit"
+"293","t.dentsum.1_Click.Count","Timing - Click Count"
+"294","t.dentrs.ins_First.Click","Timing - First Click"
+"295","t.dentrs.ins_Last.Click","Timing - Last Click"
+"296","t.dentrs.ins_Page.Submit","Timing - Page Submit"
+"297","t.dentrs.ins_Click.Count","Timing - Click Count"
+"298","t.dentrs.1_First.Click","Timing - First Click"
+"299","t.dentrs.1_Last.Click","Timing - Last Click"
+"300","t.dentrs.1_Page.Submit","Timing - Page Submit"
+"301","t.dentrs.1_Click.Count","Timing - Click Count"
+"302","t.dentrs.2_First.Click","Timing - First Click"
+"303","t.dentrs.2_Last.Click","Timing - Last Click"
+"304","t.dentrs.2_Page.Submit","Timing - Page Submit"
+"305","t.dentrs.2_Click.Count","Timing - Click Count"
+"306","t.dentrs.3_First.Click","Timing - First Click"
+"307","t.dentrs.3_Last.Click","Timing - Last Click"
+"308","t.dentrs.3_Page.Submit","Timing - Page Submit"
+"309","t.dentrs.3_Click.Count","Timing - Click Count"
+"310","t.dentrs.4_First.Click","Timing - First Click"
+"311","t.dentrs.4_Last.Click","Timing - Last Click"
+"312","t.dentrs.4_Page.Submit","Timing - Page Submit"
+"313","t.dentrs.4_Click.Count","Timing - Click Count"
+"314","t.dentrs.5_First.Click","Timing - First Click"
+"315","t.dentrs.5_Last.Click","Timing - Last Click"
+"316","t.dentrs.5_Page.Submit","Timing - Page Submit"
+"317","t.dentrs.5_Click.Count","Timing - Click Count"
+"318","t.dentrs.6_First.Click","Timing - First Click"
+"319","t.dentrs.6_Last.Click","Timing - Last Click"
+"320","t.dentrs.6_Page.Submit","Timing - Page Submit"
+"321","t.dentrs.6_Click.Count","Timing - Click Count"
+"322","t.dentrs.7_First.Click","Timing - First Click"
+"323","t.dentrs.7_Last.Click","Timing - Last Click"
+"324","t.dentrs.7_Page.Submit","Timing - Page Submit"
+"325","t.dentrs.7_Click.Count","Timing - Click Count"
+"326","t.dentrs.8_First.Click","Timing - First Click"
+"327","t.dentrs.8_Last.Click","Timing - Last Click"
+"328","t.dentrs.8_Page.Submit","Timing - Page Submit"
+"329","t.dentrs.8_Click.Count","Timing - Click Count"
+"330","t.dentrs.9_First.Click","Timing - First Click"
+"331","t.dentrs.9_Last.Click","Timing - Last Click"
+"332","t.dentrs.9_Page.Submit","Timing - Page Submit"
+"333","t.dentrs.9_Click.Count","Timing - Click Count"
+"334","t.dentrs.10_First.Click","Timing - First Click"
+"335","t.dentrs.10_Last.Click","Timing - Last Click"
+"336","t.dentrs.10_Page.Submit","Timing - Page Submit"
+"337","t.dentrs.10_Click.Count","Timing - Click Count"
+"338","t.dentrs.11_First.Click","Timing - First Click"
+"339","t.dentrs.11_Last.Click","Timing - Last Click"
+"340","t.dentrs.11_Page.Submit","Timing - Page Submit"
+"341","t.dentrs.11_Click.Count","Timing - Click Count"
+"342","t.dentrs.12_First.Click","Timing - First Click"
+"343","t.dentrs.12_Last.Click","Timing - Last Click"
+"344","t.dentrs.12_Page.Submit","Timing - Page Submit"
+"345","t.dentrs.12_Click.Count","Timing - Click Count"
+"346","t.dentsum.2_First.Click","Timing - First Click"
+"347","t.dentsum.2_Last.Click","Timing - Last Click"
+"348","t.dentsum.2_Page.Submit","Timing - Page Submit"
+"349","t.dentsum.2_Click.Count","Timing - Click Count"
+"350","dente","Your Thoughts About Coming to University of Oregon
+
+ 
+
+We know that you are excited to come to UO and we can’t wait for you to join us! To l help us help future students have a smoother transition, we would like to learn more from you and your classmates about the common worries and challenges students face when they come to UO and how students overcome these challenges.         
+
+ 
+
+In the space below please describe the thoughts, feelings, and worries you have as you prepare to come to UO.
+
+ 
+
+Please describe:
+
+
+
+	Thoughts you have about how your background may influence your experiences coming to UO
+	Strategies you might use to be successful at UO
+	Resources you could rely on for help and support when you need it
+
+
+ 
+As you reflect and write, please consider specific experiences you will have at UO during your first year like meeting new people, joining student groups, interacting with professors, and taking classes.    
+
+ 
+
+You may draw on your past experiences with other transitions (like starting at another college, starting high school, changing jobs, etc.) and on the stories you just read, which are copied below. Please take as much time as you like.    
+
+ 
+
+Note: Your essay may be provided, anonymously, to incoming UO students in future years to help give them a better understanding of what coming to UO is like. The more you can describe the challenges you anticipate facing in coming to UO and how you can respond to these challenges over time, the more future students will benefit. Thank you for your time and effort."
+"351","t.dente_First.Click","Timing - First Click"
+"352","t.dente_Last.Click","Timing - Last Click"
+"353","t.dente_Page.Submit","Timing - Page Submit"
+"354","t.dente_Click.Count","Timing - Click Count"
+"355","t.ov.3.dei_First.Click","Timing - First Click"
+"356","t.ov.3.dei_Last.Click","Timing - Last Click"
+"357","t.ov.3.dei_Page.Submit","Timing - Page Submit"
+"358","t.ov.3.dei_Click.Count","Timing - Click Count"
+"359","t.ov.4.dei_First.Click","Timing - First Click"
+"360","t.ov.4.dei_Last.Click","Timing - Last Click"
+"361","t.ov.4.dei_Page.Submit","Timing - Page Submit"
+"362","t.ov.4.dei_Click.Count","Timing - Click Count"
+"363","t.deisum.1_First.Click","Timing - First Click"
+"364","t.deisum.1_Last.Click","Timing - Last Click"
+"365","t.deisum.1_Page.Submit","Timing - Page Submit"
+"366","t.deisum.1_Click.Count","Timing - Click Count"
+"367","t.dei.ins_First.Click","Timing - First Click"
+"368","t.dei.ins_Last.Click","Timing - Last Click"
+"369","t.dei.ins_Page.Submit","Timing - Page Submit"
+"370","t.dei.ins_Click.Count","Timing - Click Count"
+"371","t.deirs.1_First.Click","Timing - First Click"
+"372","t.deirs.1_Last.Click","Timing - Last Click"
+"373","t.deirs.1_Page.Submit","Timing - Page Submit"
+"374","t.deirs.1_Click.Count","Timing - Click Count"
+"375","t.deirs.2_First.Click","Timing - First Click"
+"376","t.deirs.2_Last.Click","Timing - Last Click"
+"377","t.deirs.2_Page.Submit","Timing - Page Submit"
+"378","t.deirs.2_Click.Count","Timing - Click Count"
+"379","t.deirs.3_First.Click","Timing - First Click"
+"380","t.deirs.3_Last.Click","Timing - Last Click"
+"381","t.deirs.3_Page.Submit","Timing - Page Submit"
+"382","t.deirs.3_Click.Count","Timing - Click Count"
+"383","t.deirs.4_First.Click","Timing - First Click"
+"384","t.deirs.4_Last.Click","Timing - Last Click"
+"385","t.deirs.4_Page.Submit","Timing - Page Submit"
+"386","t.deirs.4_Click.Count","Timing - Click Count"
+"387","t.deirs.5_First.Click","Timing - First Click"
+"388","t.deirs.5_Last.Click","Timing - Last Click"
+"389","t.deirs.5_Page.Submit","Timing - Page Submit"
+"390","t.deirs.5_Click.Count","Timing - Click Count"
+"391","t.deirs.6_First.Click","Timing - First Click"
+"392","t.deirs.6_Last.Click","Timing - Last Click"
+"393","t.deirs.6_Page.Submit","Timing - Page Submit"
+"394","t.deirs.6_Click.Count","Timing - Click Count"
+"395","t.deirs.7_First.Click","Timing - First Click"
+"396","t.deirs.7_Last.Click","Timing - Last Click"
+"397","t.deirs.7_Page.Submit","Timing - Page Submit"
+"398","t.deirs.7_Click.Count","Timing - Click Count"
+"399","t.deisrs.8_First.Click","Timing - First Click"
+"400","t.deisrs.8_Last.Click","Timing - Last Click"
+"401","t.deisrs.8_Page.Submit","Timing - Page Submit"
+"402","t.deisrs.8_Click.Count","Timing - Click Count"
+"403","t.deirs.9_First.Click","Timing - First Click"
+"404","t.deirs.9_Last.Click","Timing - Last Click"
+"405","t.deirs.9_Page.Submit","Timing - Page Submit"
+"406","t.deirs.9_Click.Count","Timing - Click Count"
+"407","t.deisum.2_First.Click","Timing - First Click"
+"408","t.deisum.2_Last.Click","Timing - Last Click"
+"409","t.deisum.2_Page.Submit","Timing - Page Submit"
+"410","t.deisum.2_Click.Count","Timing - Click Count"
+"411","deie","Your Thoughts About Coming to University of Oregon
+
+ 
+
+We know that you are excited to come to UO and we can’t wait for you to join us! To l help us help future students have a smoother transition, we would like to learn more from you and your classmates about the common worries and challenges students face when they come to UO and how students overcome these challenges.
+
+ 
+
+In the space below please describe the thoughts, feelings, and worries you have as you prepare to come to UO.
+
+ 
+
+Please describe:
+
+
+
+	Thoughts you have about how your background may influence your experiences coming to UO
+	Strategies you might use to be successful at UO
+	Resources you could rely on for help and support when you need it
+
+
+ 
+As you reflect and write, please consider specific experiences you will have at UO during your first year like meeting new people, joining student groups, interacting with professors, and taking classes.    
+
+ 
+
+You may draw on your past experiences with other transitions (like starting at another college, starting high school, changing jobs, etc.) and on the stories you just read, which are copied below. Please take as much time as you like.    
+
+ 
+
+Note: Your essay may be provided, anonymously, to incoming UO students in future years to help give them a better understanding of what coming to UO is like. The more you can describe the challenges you anticipate facing in coming to UO and how you can respond to these challenges over time, the more future students will benefit. Thank you for your time and effort."
+"412","t.deie_First.Click","Timing - First Click"
+"413","t.deie_Last.Click","Timing - Last Click"
+"414","t.deie_Page.Submit","Timing - Page Submit"
+"415","t.deie_Click.Count","Timing - Click Count"
+"416","mccm","What was the most central message from the Current Students Survey you read about?"
+"417","t.mccm_First.Click","Timing - First Click"
+"418","t.mccm_Last.Click","Timing - Last Click"
+"419","t.mccm_Page.Submit","Timing - Page Submit"
+"420","t.mccm_Click.Count","Timing - Click Count"
+"421","pbi.1","When you arrive on campus this fall, how much do you think you will feel you fit in at UO?"
+"422","pbi.2","When you arrive on campus this fall, how much do you think you will feel you belong at UO?"
+"423","pbi.3","When you arrive on campus this fall, how much do you think you will feel at home at UO?"
+"424","t.pbi_First.Click","Timing - First Click"
+"425","t.pbi_Last.Click","Timing - Last Click"
+"426","t.pbi_Page.Submit","Timing - Page Submit"
+"427","t.pbi_Click.Count","Timing - Click Count"
+"428","pbs.1","At the end of your second year, how much do you think you will feel you fit in at UO?"
+"429","pbs.2","At the end of your second year, how much do you think you will feel you belong at UO?"
+"430","pbs.3","At the end of your second year, how much do you think you will feel at home at UO?"
+"431","t.pbs_First.Click","Timing - First Click"
+"432","t.pbs_Last.Click","Timing - Last Click"
+"433","t.pbs_Page.Submit","Timing - Page Submit"
+"434","t.pbs_Click.Count","Timing - Click Count"
+"435","ex.1","How excited are you about coming to UO?"
+"436","ex.2","How much do you think you’ll enjoy your time at UO?"
+"437","ex.3","How much fun do you think you’ll have at UO?"
+"438","t.ex_First.Click","Timing - First Click"
+"439","t.ex_Last.Click","Timing - Last Click"
+"440","t.ex_Page.Submit","Timing - Page Submit"
+"441","t.ex_Click.Count","Timing - Click Count"
+"442","ss.1","If I wanted to go on a trip for a day (for example, to the country or mountains), I would have a hard time finding someone to go with me."
+"443","ss.2","If I decide one afternoon that I would like to go to a movie that evening, I could easily find someone to go with me."
+"444","ss.3","I don't often get invited to do things with others."
+"445","ss.4","If I wanted to have lunch with someone, I could easily find someone to join me."
+"446","t.ss_First.Click","Timing - First Click"
+"447","t.ss_Last.Click","Timing - Last Click"
+"448","t.ss_Page.Submit","Timing - Page Submit"
+"449","t.ss_Click.Count","Timing - Click Count"
+"450","l.1","How often do you feel that you lack companionship?"
+"451","l.2","How often do you feel left out?"
+"452","l.3","How often do you feel isolated from others?"
+"453","t.l_First.Click","Timing - First Click"
+"454","t.l_Last.Click","Timing - Last Click"
+"455","t.l_Page.Submit","Timing - Page Submit"
+"456","t.l_Click.Count","Timing - Click Count"
+"457","ls.1","In most ways, my life is close to my ideal."
+"458","ls.2","The conditions of my life are excellent."
+"459","ls.3","I am satisfied with my life."
+"460","ls.4","So far, I have gotten the important things I want in life."
+"461","ls.5","If I could live my life over, I would change almost nothing."
+"462","t.ls_First.Click","Timing - First Click"
+"463","t.ls_Last.Click","Timing - Last Click"
+"464","t.ls_Page.Submit","Timing - Page Submit"
+"465","t.ls_Click.Count","Timing - Click Count"
+"466","sas_1","Indicate to what extent you have felt this way during the past month. - proud"
+"467","sas_2","Indicate to what extent you have felt this way during the past month. - strong"
+"468","sas_3","Indicate to what extent you have felt this way during the past month. - confident"
+"469","sas_4","Indicate to what extent you have felt this way during the past month. - bold"
+"470","sas_5","Indicate to what extent you have felt this way during the past month. - daring"
+"471","sas_6","Indicate to what extent you have felt this way during the past month. - fearless"
+"472","sas_7","Indicate to what extent you have felt this way during the past month. - sad"
+"473","sas_8","Indicate to what extent you have felt this way during the past month. - blue"
+"474","sas_9","Indicate to what extent you have felt this way during the past month. - downhearted"
+"475","sas_10","Indicate to what extent you have felt this way during the past month. - alone"
+"476","sas_11","Indicate to what extent you have felt this way during the past month. - lonely"
+"477","t.sas_First.Click","Timing - First Click"
+"478","t.sas_Last.Click","Timing - Last Click"
+"479","t.sas_Page.Submit","Timing - Page Submit"
+"480","t.sas_Click.Count","Timing - Click Count"
+"481","se","I have high self-esteem."
+"482","t.se_First.Click","Timing - First Click"
+"483","t.se_Last.Click","Timing - Last Click"
+"484","t.se_Page.Submit","Timing - Page Submit"
+"485","t.se_Click.Count","Timing - Click Count"
+"486","ps.1","In the last month, how often have you felt that you were unable to control the important things in your life?"
+"487","ps.2","In the last month, how often have you felt confident about your ability to handle your personal problems?"
+"488","ps.3","In the last month, how often have you felt that things were going your way?"
+"489","ps.4","In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?"
+"490","t.ps_First.Click","Timing - First Click"
+"491","t.ps_Last.Click","Timing - Last Click"
+"492","t.ps_Page.Submit","Timing - Page Submit"
+"493","t.ps_Click.Count","Timing - Click Count"
+"494","gh.1","I seem to get sick a little easier than other people."
+"495","gh.2","I am as healthy as anybody I know."
+"496","gh.3","I expect my health to get worse."
+"497","gh.4","My health is excellent."
+"498","t.gh_First.Click","Timing - First Click"
+"499","t.gh_Last.Click","Timing - Last Click"
+"500","t.gh_Page.Submit","Timing - Page Submit"
+"501","t.gh_Click.Count","Timing - Click Count"
+"502","b5_1","I see myself as... - ...extraverted, enthusiastic."
+"503","b5_2","I see myself as... - ...critical, quarrelsome."
+"504","b5_3","I see myself as... - ...dependable, self-disciplined."
+"505","b5_4","I see myself as... - ...anxious, easily upset."
+"506","b5_5","I see myself as... - ...open to new experiences, complex."
+"507","b5_6","I see myself as... - ...reserved, quiet."
+"508","b5_7","I see myself as... - ...sympathetic, warm."
+"509","b5_8","I see myself as... - ...disorganized, careless."
+"510","b5_9","I see myself as... - ...calm, emotionally stable."
+"511","b5_10","I see myself as... - ...conventional, uncreative."
+"512","t.b5_First.Click","Timing - First Click"
+"513","t.b5_Last.Click","Timing - Last Click"
+"514","t.b5_Page.Submit","Timing - Page Submit"
+"515","t.b5_Click.Count","Timing - Click Count"
+"516","fa.1","Haveyou received (or will you be receiving) financial aid – such as grants, loans,or scholarship"
+"517","t.fa.1_First.Click","Timing - First Click"
+"518","t.fa.1_Last.Click","Timing - Last Click"
+"519","t.fa.1_Page.Submit","Timing - Page Submit"
+"520","t.fa.1_Click.Count","Timing - Click Count"
+"521","fa.2a","Have you received (or will you be receiving) Federal Loans? [includes Stafford, Perkins, Graduate and Professional Student PLUS, does NOT include Parent PLUS]"
+"522","fa.2b","Have you received (or will you be receiving) Federal Pell Grant?"
+"523","fa.2c","Have you received (or will you be receiving) Work Study?"
+"524","t.fa.2_First.Click","Timing - First Click"
+"525","t.fa.2_Last.Click","Timing - Last Click"
+"526","t.fa.2_Page.Submit","Timing - Page Submit"
+"527","t.fa.2_Click.Count","Timing - Click Count"
+"528","pe.1","Parent/Guardian 1"
+"529","pe.2","Parent/Guardian 2"
+"530","t.pe_First.Click","Timing - First Click"
+"531","t.pe_Last.Click","Timing - Last Click"
+"532","t.pe_Page.Submit","Timing - Page Submit"
+"533","t.pe_Click.Count","Timing - Click Count"
+"534","sss","Now think about your family when you were growing up. Please tell us where you think your family would be on this ladder. Select the number on the scale below that corresponds to the rung that best represents where your family would be on this ladder."
+"535","t.sss_First.Click","Timing - First Click"
+"536","t.sss_Last.Click","Timing - Last Click"
+"537","t.sss_Page.Submit","Timing - Page Submit"
+"538","t.sss_Click.Count","Timing - Click Count"
+"539","fsc","How would you describe your family’s social class when you were growing up?"
+"540","t.fsc_First.Click","Timing - First Click"
+"541","t.fsc_Last.Click","Timing - Last Click"
+"542","t.fsc_Page.Submit","Timing - Page Submit"
+"543","t.fsc_Click.Count","Timing - Click Count"
+"544","hsa.1","How do you think the high school you attended compares to the high
+schools attended by most other incoming UO students?"
+"545","t.hsa.1_First.Click","Timing - First Click"
+"546","t.hsa.1_Last.Click","Timing - Last Click"
+"547","t.hsa.1_Page.Submit","Timing - Page Submit"
+"548","t.hsa.1_Click.Count","Timing - Click Count"
+"549","hsa.2","Please briefly describe why you think your high school was relatively
+more or less advantaged."
+"550","t.hsa.2_First.Click","Timing - First Click"
+"551","t.hsa.2_Last.Click","Timing - Last Click"
+"552","t.hsa.2_Page.Submit","Timing - Page Submit"
+"553","t.hsa.2_Click.Count","Timing - Click Count"
+"554","gi","What is your gender identity? (select all that apply) - Selected Choice"
+"555","gi_10_TEXT","What is your gender identity? (select all that apply) - None of these describe me well; this is better: - Text"
+"556","gii","My gender identity is an important part of who I am."
+"557","t.gi_First.Click","Timing - First Click"
+"558","t.gi_Last.Click","Timing - Last Click"
+"559","t.gi_Page.Submit","Timing - Page Submit"
+"560","t.gi_Click.Count","Timing - Click Count"
+"561","so","Which term best describes your sexual orientation? (select all that apply) - Selected Choice"
+"562","so_10_TEXT","Which term best describes your sexual orientation? (select all that apply) - None of these describe me well; this is better: - Text"
+"563","soi","My sexuality is an important part of who I am."
+"564","t.so_First.Click","Timing - First Click"
+"565","t.so_Last.Click","Timing - Last Click"
+"566","t.so_Page.Submit","Timing - Page Submit"
+"567","t.so_Click.Count","Timing - Click Count"
+"568","rei","What is your racial or ethnic identity? (write ""pntr"" if you prefer not to respond)"
+"569","reii","My racial/ethnic identity is an important part of who I am."
+"570","t.rei_First.Click","Timing - First Click"
+"571","t.rei_Last.Click","Timing - Last Click"
+"572","t.rei_Page.Submit","Timing - Page Submit"
+"573","t.rei_Click.Count","Timing - Click Count"
+"574","fy","At
+any time before turning 18, were you in foster care or were you a dependent or
+ward of the court?"
+"575","af","Are
+you a veteran of or currently active duty/reserve in the Armed Forces?"
+"576","cd","Do
+you have any children or other dependents?"
+"577","t.dem2.1_First.Click","Timing - First Click"
+"578","t.dem2.1_Last.Click","Timing - Last Click"
+"579","t.dem2.1_Page.Submit","Timing - Page Submit"
+"580","t.dem2.1_Click.Count","Timing - Click Count"
+"581","cd.a1","What
+age(s) is/are your
+child/children? (write ""pntr"" if you prefer not to respond)"
+"582","cd.a2","What
+age(s) is/are your dependent(s)? (write ""pntr"" if you prefer not to respond)"
+"583","t.dem2.2_First.Click","Timing - First Click"
+"584","t.dem2.2_Last.Click","Timing - Last Click"
+"585","t.dem2.2_Page.Submit","Timing - Page Submit"
+"586","t.dem2.2_Click.Count","Timing - Click Count"
+"587","d","Do
+you self-identify with a disability (physical, cognitive, mental health
+related)?"
+"588","t.dem2.3_First.Click","Timing - First Click"
+"589","t.dem2.3_Last.Click","Timing - Last Click"
+"590","t.dem2.3_Page.Submit","Timing - Page Submit"
+"591","t.dem2.3_Click.Count","Timing - Click Count"
+"592","da","Have
+you sought or do you plan to seek university accommodations from the Accessible
+Education Center (AEC)?"
+"593","t.dem2.4_First.Click","Timing - First Click"
+"594","t.dem2.4_Last.Click","Timing - Last Click"
+"595","t.dem2.4_Page.Submit","Timing - Page Submit"
+"596","t.dem2.4_Click.Count","Timing - Click Count"
+"597","efl","Is English your first language?"
+"598","t.efl_First.Click","Timing - First Click"
+"599","t.efl_Last.Click","Timing - Last Click"
+"600","t.efl_Page.Submit","Timing - Page Submit"
+"601","t.efl_Click.Count","Timing - Click Count"
+"602","fl","What is your first language?"
+"603","t.fl_First.Click","Timing - First Click"
+"604","t.fl_Last.Click","Timing - Last Click"
+"605","t.fl_Page.Submit","Timing - Page Submit"
+"606","t.fl_Click.Count","Timing - Click Count"
+"607","fq.d","How distracted were you as you completed the materials? (e.g., by interruptions, other people, social media, etc.)"
+"608","fq.td","Did you have any technical difficulties as you completed the materials? For instance, did you have to restart the materials, did your computer freeze up, did the internet stop working, or did anything else happen that interfered with your ability to complete them? - Selected Choice"
+"609","fq.td_1_TEXT","Did you have any technical difficulties as you completed the materials? For instance, did you have to restart the materials, did your computer freeze up, did the internet stop working, or did anything else happen that interfered with your ability to complete them? - Yes, I had some technical difficulties with the activity. 
+Please explain what happened. - Text"
+"610","t.fq_First.Click","Timing - First Click"
+"611","t.fq_Last.Click","Timing - Last Click"
+"612","t.fq_Page.Submit","Timing - Page Submit"
+"613","t.fq_Click.Count","Timing - Click Count"
+"614","mc.1","Consent to Contact
+
+ 
+We care about your wellbeing and success and want to connect you to resources. There are all sorts of programs and services across the UO that support students with various backgrounds, interests, and needs. The data you have provided gives us a better understanding of what your background is and what your interests and needs might be. Would it be OK if programs and services that support students like you were to contact you to provide more information about what they do and how you could get involved? - Selected Choice"
+"615","mc.1_1_TEXT","Consent to Contact
+
+ 
+We care about your wellbeing and success and want to connect you to resources. There are all sorts of programs and services across the UO that support students with various backgrounds, interests, and needs. The data you have provided gives us a better understanding of what your background is and what your interests and needs might be. Would it be OK if programs and services that support students like you were to contact you to provide more information about what they do and how you could get involved? - Yes please - enter email address you would like us to use: - Text"
+"616","mc.2","Other Research Opportunities
+
+ 
+We do a lot of research. Would you be interested in participating in other research studies we do? If so, may we contact you about other studies when they happen?"
+"617","PIDM","PIDM"
+"618","cond","cond"
+"619","intl","intl"
