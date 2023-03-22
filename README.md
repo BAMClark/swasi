@@ -25,33 +25,42 @@ Additionally, other functions might be used to create tables for analyses and vi
 * quality_control()
 * TBD...
 
+## Follow along! 
+
 Copy and paste the following the following sample code on your machine.
 
 dat <- read.csv("example.csv")
 key <- read.csv("key_example.csv")
 
-# Step 1
+##Step 1
+
 create_codebook(dat, 2223) #2223 represents academic year 2022-2023
 
-# Step 2
+##Step 2
+
 dat <- clean_data(dat)
 
-# Step 3
+##Step 3
+
 update_reference(key, dat, 2223)
 
-# Step 4
+##Step 4
+
 dat <- deidentify(key, dat, 2223)
 
-# Step 5
+##Step 5
+
 separate_consent(dat, 2223)
 
-# Step 6
+##Step 6
+
 completion_status(dat)
 
-# Additional
+##Additional
+
 quality_control(dat, 2223)
 
-## if interested in creating quality control tables only on consented inviduals, we can left join on that dataset using the following code (you first need to read in the dataset you created in step 5
+###If interested in creating quality control tables only on consented inviduals, we can left join on that dataset using the following code (you first need to read in the dataset you created in step 5
 
 consent_dat <- read.csv("consented_bl_2223.csv")
 quality_control(dat, consented_dat)
