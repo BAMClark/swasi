@@ -1,8 +1,8 @@
 # swasi
 
-Welcome to the SWASI, a package used to tidy data from the Student Wellbeing and Assessement Survey. This package is intended to serve the University of Oregon's Office of Assessment and Research in preparing SWASI files for data analysis and research projects, and the datafiles used for this package are private.
+Welcome to the SWaSI, a package used to tidy data from the Student Wellbeing and Success Initiative. This package is intended to serve the Office of Assessment and Research in the Division of Student Life at the University of Oregon in preparing SWaSI files for data analysis and research projects. The data files used for this package are private.
  
- This package also serves as the final capstone project for EDLD 640, so for the purposes of that class, I have also provided two simulated datasets that preserves the structure of the type of dataframes used with this package -- only with no identifiable information:
+This package also serves as the final capstone project for EDLD 640, so for the purposes of that class, I have also provided two simulated datasets that preserves the structure of the type of dataframes used with this package -- only with no identifiable information:
 
 * example.csv -- this simulates the main dataframe that will be used with this package
 * key_example.csv -- this simulates the key/reference file 
