@@ -185,8 +185,8 @@ separate_consent <- function(df, year, path = "") {
   consented <- consent_prep %>%
     filter(c_dat == "Yes")
 
-  not_consented <- consent_prep %>%
-    filter(c_dat != "Yes")
+  # not_consented <- consent_prep %>%
+  #   filter(c_dat != "Yes")
 
 
   write.csv(
@@ -197,15 +197,15 @@ separate_consent <- function(df, year, path = "") {
       year,
       ".csv"
     ))
+#
+#   write.csv(
+#     not_consented,
+#     paste0(
+#       path,
+#       "noconsent_bl_",
+#       year,
+#       ".csv"))
 
-  write.csv(
-    not_consented,
-    paste0(
-      path,
-      "noconsent_bl_",
-      year,
-      ".csv"
-    ))
 
   return(consent_prep)
 }
@@ -243,3 +243,147 @@ completion_status <- function(df, lower_bound = 3, upper_bound = 95) {
     )
   return(df_complete)
 }
+
+#' Identify intervention condition
+#'
+#' Step 7
+#'
+#' This function adds mccm_correct column.
+#' In other words, the intervention condition is specified.
+#'
+#'
+#' @param df,consent_df,path Input dataframe, consent_df defaults to NULL, path is default to current
+#' @return df with additional intervention condition variable
+#' @export
+quality_control <- function(df, year, path = "") {
+  qc <- df %>%
+    select(
+      id_bl, cohort, start_date:browser_resolution,
+      starts_with("t"),
+      fq_d, fq_td, mccm,
+      pbi_1:pbi_3, pbs_1:pbs_3,
+      status, cond
+    ) %>%
+    mutate(
+      mccm_correct = case_when(
+        is.na(cond) ~ NA_character_,
+        cond == "Control" & mccm == 2 ~ "correct",
+        str_detect(cond, "Difference") & mccm == 4 ~ "correct",
+        cond == "Social-Belonging" & mccm == 1 ~ "correct",
+        !is.na(mccm) ~ "incorrect"
+      )
+    ) %>%
+    select(-cond)
+
+
+  write_csv(
+    qc,
+    paste0(
+      path,
+      "qc_bl_",
+      year,
+      ".csv"
+    ))
+}
+
+#' Essay Tab
+#'
+#' Step 8
+#'
+#' This function cleans up the essay response.
+#'
+#'
+#' @param df1,df2,path Input dataframes, path is default to current
+#' @return df with additional intervention condition variable
+#' @export
+essay <- function(df1, df2, path = "") {
+  essay_tab <- left_join(df1, df2, by = c("external_reference" = "uoid")) %>%
+    rename(cond_desc = cond) %>%
+    mutate(cond = recode(
+      cond_desc,
+      "Control" = 1,
+      "Social-Belonging" = 2,
+      "Difference Education (First-Generation)" = 3,
+      "Difference Education (International)" = 4,
+      "Difference Education (Nontraditional/Transfer)" = 5
+    ),
+    essay = case_when(
+      !is.na(ce) ~ ce,
+      !is.na(sbe) ~ sbe,
+      !is.na(defge) ~ defge,
+      !is.na(dente) ~ dente,
+      !is.na(deie) ~ deie
+    ),
+    essay = gsub("won't", "will not", essay),
+    essay = gsub("can't", "can not", essay),
+    essay = gsub("n't", " not", essay),
+    essay = gsub("'ll", " will", essay),
+    essay = gsub("'re", " are", essay),
+    essay = gsub("'ve", " have", essay),
+    essay = gsub("'m", " am", essay),
+    essay = gsub("'d", " would", essay),
+    essay = gsub("'s", "", essay),
+    essay = sapply(essay, function(x) gsub("[^a-zA-Z0-9 ]", " ", x)),
+    essay = str_squish(essay),
+    essay = str_to_lower(essay),
+    intl = if_else(is.na(intl),"us", "intl")
+    ) %>%
+    within(essay[essay == ""]<- NA_character_) %>%
+    within(essay[essay == "90oi8plk m"]<- NA_character_) %>%
+    mutate(complete = if_else(!is.na(essay),"Y", "N")) %>%
+    select(
+      id_bl, cohort,
+      cond, cond_desc,
+      tfer, nontrad, ntt, intl,
+      essay, complete
+    )
+
+  write_csv(
+    essay_tab,
+    paste0(
+      path,
+      "ie_bl_",
+      year,
+      ".csv"
+    ))
+}
+
+#' Items Tab
+#'
+#' Step 9
+#'
+#' This function cleans up the response items.
+#'
+#'
+#' @param df1,year,path Input dataframes, year, and path is default to current
+#' @return df with additional intervention condition variable
+#' @export
+itemify <- function(df, year, path = "") {
+  items <- df %>%
+    select(id_bl,
+           bu_1:bu_4, stt_1:stt_4, ss_1:ss_4, l_1:l_3,
+           gh_1:gh_4, ls_1:ls_5, ps_1:ps_4,
+           au_1:au_5, se, sas_1:sas_11,
+           ex_1:ex_3, b5_1:b5_10) %>%
+    rename_with(sas_1:sas_6, ~gsub("sas", "sa", .)) %>%
+    rename(s_1 = sas_7,
+           s_2 = sas_8,
+           s_3 = sas_9,
+           s_4 = sas_10,
+           s_5 = sas_11) %>%
+    mutate(b5_2 = 7 - b5_2,
+           b5_4 = 7 - b5_4,
+           b5_6 = 7 - b5_6,
+           b5_8 = 7 - b5_8,
+           b5_10 = 7 - b5_10)
+
+  write_csv(
+    items,
+    paste0(
+      path,
+      "item_bl_",
+      year,
+      ".csv"
+    ))
+}
+
