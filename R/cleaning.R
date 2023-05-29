@@ -5,7 +5,7 @@
 #'
 #' This function creates a codebook with the first two rows from the survey,
 #' which has the name and description of each variable. This function
-#' should be run first.
+#' should be run first before any cleaning or manipulation.
 #'
 #' @param df,year,path Input dataframe, year of analysis, and path to save file
 #' @return codebook dataframe

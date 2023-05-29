@@ -18,5 +18,5 @@ Step 1
 \details{
 This function creates a codebook with the first two rows from the survey,
 which has the name and description of each variable. This function
-should be run first.
+should be run first before any cleaning or manipulation.
 }
