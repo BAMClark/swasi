@@ -185,8 +185,8 @@ separate_consent <- function(df, year, path = "") {
   consented <- consent_prep %>%
     filter(c_dat == "Yes")
 
-  # not_consented <- consent_prep %>%
-  #   filter(c_dat != "Yes")
+   not_consented <- consent_prep %>%
+     filter(c_dat != "Yes")
 
 
   write.csv(
@@ -197,14 +197,14 @@ separate_consent <- function(df, year, path = "") {
       year,
       ".csv"
     ))
-#
-#   write.csv(
-#     not_consented,
-#     paste0(
-#       path,
-#       "noconsent_bl_",
-#       year,
-#       ".csv"))
+
+  write.csv(
+    not_consented,
+    paste0(
+      path,
+      "noconsent_bl_",
+      year,
+      ".csv"))
 
 
   return(consent_prep)

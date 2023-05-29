@@ -5,10 +5,10 @@
 #' This function creates an output of bar plots.
 #'
 #'
-#' @param df1,year,path Input dataframe, year, and path is default to current
+#' @param df1,year,index,path Input dataframe, year, and path is default to current
 #' @return bar plots
 #' @export
-bar_fun <- function(df, year, index, path = "output/EDA/plots/", folder = "assessment/", na.rm = T, ...) {
+bar_fun <- function(df, year, index, path = "output/EDA/plots/", na.rm = T, ...) {
 
   nm <- names(df)
 
@@ -20,8 +20,7 @@ bar_fun <- function(df, year, index, path = "output/EDA/plots/", folder = "asses
     ggsave(
       bars,
       filename = paste0(
-        path,
-        folder[index],
+        path[index],
         nm[i],
         "_bl_",
         year,
@@ -38,10 +37,10 @@ bar_fun <- function(df, year, index, path = "output/EDA/plots/", folder = "asses
 #' This function creates an output of hist plots.
 #'
 #'
-#' @param df1,year,path Input dataframe, year, and path is default to current
+#' @param df1,year,index,path Input dataframe, year, and path is default to current
 #' @return histogram plots
 #' @export
-hist_fun <- function(df, year, index, path = "output/EDA/plots/", folder = "assessment/", na.rm = T, ...) {
+hist_fun <- function(df, year, index, path = "output/EDA/plots/", na.rm = T, ...) {
 
   nm <- names(df)
 
@@ -52,8 +51,7 @@ hist_fun <- function(df, year, index, path = "output/EDA/plots/", folder = "asse
     ggsave(
       histos,
       filename = paste0(
-        path,
-        folder[index],
+        path[index],
         nm[i],
         "_bl_",
         year,
