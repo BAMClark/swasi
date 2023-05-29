@@ -30,6 +30,7 @@ Additionally, other functions might be used to create tables for analyses and vi
 Copy and paste the following the following sample code on your machine.
 
 dat <- read.csv("example.csv")
+
 key <- read.csv("key_example.csv")
 
 ##Step 1
@@ -63,4 +64,5 @@ quality_control(dat, 2223)
 ###If interested in creating quality control tables only on consented inviduals, we can left join on that dataset using the following code (you first need to read in the dataset you created in step 5
 
 consent_dat <- read.csv("consented_bl_2223.csv")
+
 quality_control(dat, consented_dat)
