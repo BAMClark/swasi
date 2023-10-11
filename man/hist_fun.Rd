@@ -4,17 +4,21 @@
 \alias{hist_fun}
 \title{Histogram}
 \usage{
-hist_fun(df, year, index, path = "output/EDA/plots/", na.rm = T, ...)
+hist_fun(
+  df,
+  quant_vars,
+  year,
+  path = "output/EDA/plots/histograms/",
+  na.rm = T,
+  ...
+)
 }
 \arguments{
-\item{df1, year, index, path}{Input dataframe, year, and path is default to current}
+\item{df, }{quant_vars,year,path Input dataframe, vector of variable names, year, and path is default to "output/EDA/plots/histograms/"}
 }
 \value{
 histogram plots
 }
 \description{
-Histogram
-}
-\details{
 This function creates an output of hist plots.
 }

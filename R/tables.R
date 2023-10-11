@@ -1,15 +1,16 @@
 
-#' Create quality control
+#' Identify intervention condition
 #'
 #'
-#' This function creates a quality control dataframe. User has the option to use
-#' the full dataframe or filter based on the dataframe of students who have
-#' consented to using their data for research. The consent_df argument is optional.
+#' This function adds mccm_correct column.
+#' In other words, the intervention condition is specified.
 #'
-#' @param df,year,consent_df,path Input dataframe, lower_bound defaults to 3, upper_bound defaults to 95
-#' @return df with additional consent variable
+#'
+#' @param df,year,path,name Input dataframe, year, path is default to current, name default saves to "qc_bl_"
+#' @return df with additional intervention condition variable
 #' @export
-quality_control <- function(df, year, consent_df = NULL, path = "") {
+quality_control <- function(df, year, path = "", name = "qc_bl_") {
+
   qc <- df %>%
     select(
       id_bl, cohort, start_date:browser_resolution,
@@ -29,25 +30,497 @@ quality_control <- function(df, year, consent_df = NULL, path = "") {
     ) %>%
     select(-cond)
 
-  if (is.null(consent_df)) {
-    joined <- qc
-  } else {
-    shared_colnames <- names(consent_df)[names(consent_df) %in% names(qc)]
-    shared_coltypes <- sapply(consent_df[,shared_colnames], class)
-
-    for (n in shared_colnames) {
-      class(qc[,n]) <- shared_coltypes[n]
-    }
-
-    joined <- left_join(consent_df, qc)
-  }
 
   write_csv(
-    joined,
+    qc,
     paste0(
       path,
-      "qc_bl_",
+      name,
       year,
       ".csv"
     ))
+
+}
+
+#' Essay Tab
+#'
+#'
+#' This function cleans up the essay response.
+#'
+#'
+#' @param df1,df2,year,path,name Input df1 = original/consent df, df2 = panel data, year, path is default to current, name default to "ie_bl_"
+#' @return df with additional intervention condition variable
+#' @export
+essay <- function(df1, df2, year, path = "", name = "ie_bl_") {
+
+  essay_tab <- left_join(df1, df2, by = c("external_reference" = "uoid")) %>%
+    rename(cond_desc = cond) %>%
+    mutate(cond = recode(
+      cond_desc,
+      "Control" = 1,
+      "Social-Belonging" = 2,
+      "Difference Education (First-Generation)" = 3,
+      "Difference Education (International)" = 4,
+      "Difference Education (Nontraditional/Transfer)" = 5
+    ),
+    essay = case_when(
+      !is.na(ce) ~ ce,
+      !is.na(sbe) ~ sbe,
+      !is.na(defge) ~ defge,
+      !is.na(dente) ~ dente,
+      !is.na(deie) ~ deie
+    ),
+    essay = gsub("won't", "will not", essay),
+    essay = gsub("can't", "can not", essay),
+    essay = gsub("n't", " not", essay),
+    essay = gsub("'ll", " will", essay),
+    essay = gsub("'re", " are", essay),
+    essay = gsub("'ve", " have", essay),
+    essay = gsub("'m", " am", essay),
+    essay = gsub("'d", " would", essay),
+    essay = gsub("'s", "", essay),
+    essay = sapply(essay, function(x) gsub("[^a-zA-Z0-9 ]", " ", x)),
+    essay = str_squish(essay),
+    essay = str_to_lower(essay),
+    intl = if_else(is.na(intl),"us", "intl")
+    ) %>%
+    within(essay[essay == ""]<- NA_character_) %>%
+    within(essay[essay == "90oi8plk m"]<- NA_character_) %>%
+    mutate(complete = if_else(!is.na(essay),"Y", "N"))
+
+  write_csv(
+    essay_tab,
+    paste0(
+      path,
+      name,
+      year,
+      ".csv"
+    ))
+}
+
+#' Items Tab
+#'
+#'
+#' This function cleans up the response items.
+#'
+#'
+#' @param df1,year,path,name Input dataframe, year, path is default to current, name is set to "item_bl_"
+#' @return df with items cleaned up
+#' @export
+itemify <- function(df, year, path = "", name = "item_bl_") {
+  items <- df %>%
+    select(id_bl,
+           bu_1:bu_4, stt_1:stt_4, ss_1:ss_4, l_1:l_3,
+           gh_1:gh_4, ls_1:ls_5, ps_1:ps_4,
+           au_1:au_5, se, sas_1:sas_11,
+           ex_1:ex_3, b5_1:b5_10) %>%
+    mutate_if(is.character, as.numeric) %>%
+    rename(sa_1 = sas_1,
+           sa_2 = sas_2,
+           sa_3 = sas_3,
+           sa_4 = sas_4,
+           sa_5 = sas_5,
+           sa_6 = sas_6) %>%
+    rename(s_1 = sas_7,
+           s_2 = sas_8,
+           s_3 = sas_9,
+           s_4 = sas_10,
+           s_5 = sas_11)
+
+  write_csv(
+    items,
+    paste0(
+      path,
+      name,
+      year,
+      ".csv"
+    ))
+}
+
+#' Demographic Tab
+#'
+#'
+#' This function cleans up the demographic variables
+#'
+#'
+#' @param df1,df2,year,path,name Input df1 = original/consent df, df2 = panel data, year, path is default to current, name is set to "ds_bl_"
+#' @return df with demo vars cleaned up
+#' @export
+demos <- function(df1, df2, year, path = "", name = "ds_bl_") {
+  df <- left_join(df1, df2, by = c("external_reference" = "uoid")) %>%
+    select(id_bl, cohort, orientation_session_desc:ntt, intl, nation_of_citizenship_desc, gi:gii, so:soi, rei, reii, fy:cd, cd_a1, cd_a2, d, da, efl, fl, fa_1, fa_2a:fa_2c, pe_1, pe_2, sss, fsc, hsa_1, hsa_2) %>%
+    rename(gi_other_text = gi_10_text,
+           so_other_text = so_10_text) %>%
+    #this is new because I want to make sure data types are appropriate for code below
+    mutate_at(c("fy", "af", "cd", "d", "da", "efl", "fa_1", "fa_2a", "fa_2b", "pe_1", "pe_2", "sss", "fsc", "hsa_1"), as.numeric) %>%
+    mutate(gi = as.character(gi),
+           so = as.character(so),
+           gi_agender = if_else( str_detect(gi, "1") & !(gi %in% c(10, 11)), 1, 0),
+           gi_queer = if_else(str_detect(gi, "2"), 1, 0),
+           gi_man = if_else(str_detect(gi, "3"), 1, 0),
+           gi_nonbinary = if_else(str_detect(gi, "4"), 1, 0),
+           gi_trans = if_else(str_detect(gi, "5"), 1, 0),
+           gi_transman = if_else(str_detect(gi, "6"), 1, 0),
+           gi_transwoman = if_else(str_detect(gi, "7"), 1, 0),
+           gi_woman = if_else(str_detect(gi, "8"), 1, 0),
+           gi_questioning = if_else(str_detect(gi, "9"), 1, 0),
+           gi_other = if_else(gi == "10", 1, 0),
+           gi_pntr = if_else(gi == "11", 1, 0),
+           gi_other_text = tolower(gi_other_text),
+           so_asexual = if_else(str_detect(so, "1") & !(so %in% c(10, 11)), 1, 0),
+           so_bisexual = if_else(str_detect(so, "2"), 1, 0),
+           so_gay = if_else(str_detect(so, "3"), 1, 0),
+           so_hetero = if_else(str_detect(so, "4"), 1, 0),
+           so_lesbian = if_else(str_detect(so, "5"), 1, 0),
+           so_pansexual = if_else(str_detect(so, "6"), 1, 0),
+           so_queer = if_else(str_detect(so, "7"), 1, 0),
+           so_questioning = if_else(str_detect(so, "8"), 1, 0),
+           so_sgl = if_else(str_detect(so, "9"), 1, 0),
+           so_other = if_else(so == "10", 1, 0),
+           so_pntr = if_else(so == "11", 1, 0),
+           so_other_text = tolower(so_other_text)) %>%
+    within(gi_agender[str_detect(gi_other_text, "no gender")]<- 1) %>%
+    within(gi_queer[str_detect(gi_other_text, "queer")]<- 1) %>%
+    within(gi_man[str_detect(gi_other_text, "(?<!wo)man")]<- 1) %>%
+    within(gi_man[str_detect(gi_other_text, "masc")]<- 1) %>%
+    within(gi_man[str_detect(gi_other_text, "boy")]<- 1) %>%
+    within(gi_nonbinary[str_detect(gi_other_text, "fluid")]<- 1) %>%
+    within(gi_nonbinary[str_detect(gi_other_text, "binary")]<- 1) %>%
+    within(gi_nonbinary[str_detect(gi_other_text, "they")]<- 1) %>%
+    within(gi_nonbinary[str_detect(gi_other_text, "conform")]<- 1) %>%
+    within(gi_nonbinary[str_detect(gi_other_text, "necessarily")]<- 1) %>% #special
+    within(gi_nonbinary[str_detect(gi_other_text, "middle")]<- 1) %>% #special
+    within(gi_trans[str_detect(gi_other_text, "trans")]<- 1) %>%
+    within(gi_woman[str_detect(gi_other_text, "woman")]<- 1) %>%
+    within(gi_woman[str_detect(gi_other_text, "she")]<- 1) %>%
+    within(gi_woman[str_detect(gi_other_text, "girl")]<- 1) %>%
+    within(gi_woman[str_detect(gi_other_text, "fem")]<- 1) %>%
+    within(gi_woman[str_detect(gi_other_text, "lady")]<- 1) %>%
+    within(gi_questioning[str_detect(gi_other_text, "questioning")]<- 1) %>%
+    within(gi_questioning[str_detect(gi_other_text, "unsure")]<- 1) %>%
+    within(so_asexual[str_detect(so_other_text, "asexual")]<- 1) %>%
+    within(so_asexual[str_detect(so_other_text, "graysexual")]<- 1) %>%
+    within(so_asexual[str_detect(so_other_text, "demi")]<- 1) %>%
+    within(so_bisexual[str_detect(so_other_text, "bisexual")]<- 1) %>%
+    within(so_gay[str_detect(so_other_text, "homo")]<- 1) %>%
+    within(so_gay[str_detect(so_other_text, "achillian")]<- 1) %>%
+    within(so_hetero[str_detect(so_other_text, "(?<!not )straight")]<- 1) %>%
+    within(so_hetero[str_detect(so_other_text, "hetero")]<- 1) %>%
+    within(so_lesbian[str_detect(so_other_text, "sapphic")]<- 1) %>%
+    within(so_lesbian[str_detect(so_other_text, "lesbian")]<- 1) %>%
+    within(so_pansexual[str_detect(so_other_text, "pansexual")]<- 1) %>%
+    within(so_pansexual[str_detect(so_other_text, "abrosexual")]<- 1) %>%
+    within(so_queer[str_detect(so_other_text, "trixic")]<- 1) %>%
+    within(so_queer[str_detect(so_other_text, "not straight")]<- 1) %>%
+    within(so_questioning[str_detect(so_other_text, "curious")]<- 1) %>%
+    within(so_questioning[str_detect(so_other_text, "unsure")]<- 1) %>%
+    within(so_questioning[str_detect(so_other_text, "figur")]<- 1) %>%
+    mutate(so_fluid = case_when( #new
+      str_detect(so_other_text, "fluid") |
+        str_detect(so_other_text, "flex") |
+        str_detect(so_other_text, "label") |
+        str_detect(so_other_text, "open") |
+        str_detect(so_other_text, "like") ~ #special
+        1,
+      !is.na(so_asexual) |
+        !is.na(so_bisexual) |
+        !is.na(so_gay) |
+        !is.na(so_hetero) |
+        !is.na(so_lesbian) |
+        !is.na(so_pansexual) |
+        !is.na(so_queer) |
+        !is.na(so_questioning) |
+        !is.na(so_sgl) ~
+        0),
+      gi_agender_desc = if_else(gi_agender == 1, "Agender", NA_character_),
+      gi_queer_desc = if_else(gi_queer == 1, "Genderqueer", NA_character_),
+      gi_man_desc = if_else(gi_man == 1, "Man", NA_character_),
+      gi_nonbinary_desc = if_else(gi_nonbinary == 1, "Nonbinary (incl. fuild, nonconforming, etc.)", NA_character_),
+      gi_trans_desc = if_else(gi_trans == 1, "Transgender", NA_character_),
+      gi_transman_desc = if_else(gi_transman == 1, "Trans Man", NA_character_),
+      gi_transwoman_desc = if_else(gi_transwoman == 1, "Trans Woman", NA_character_),
+      gi_woman_desc = if_else(gi_woman == 1, "Woman", NA_character_),
+      gi_questioning_desc = if_else(gi_questioning == 1, "Questioning or Unsure", NA_character_),
+      gi_other_desc = if_else(gi_other == 1, "Other", NA_character_),
+      gi_pntr_desc = if_else(gi_pntr == 1, "Prefer not to respond", NA_character_),
+      so_asexual_desc = if_else(so_asexual == 1, "Asexual", NA_character_),
+      so_bisexual_desc = if_else(so_bisexual == 1, "Bisexual", NA_character_),
+      so_fluid_desc = if_else(so_fluid == 1, "Fluid", NA_character_), #new
+      so_gay_desc = if_else(so_gay == 1, "Gay", NA_character_),
+      so_hetero_desc = if_else(so_hetero == 1, "Straight or Heterosexual", NA_character_),
+      so_lesbian_desc = if_else(so_lesbian == 1, "Lesbian", NA_character_),
+      so_pansexual_desc = if_else(so_pansexual == 1, "Pansexual", NA_character_),
+      so_queer_desc = if_else(so_queer == 1, "Queer", NA_character_),
+      so_questioning_desc = if_else(so_questioning == 1, "Questioning or Unsure", NA_character_),
+      so_sgl_desc = if_else(so_sgl == 1, "Same-Gender Loving", NA_character_),
+      so_other_desc = if_else(so_other == 1, "Other", NA_character_),
+      so_pntr_desc = if_else(so_pntr == 1, "Prefer not to respond", NA_character_)
+    ) %>%
+    unite(
+      gi_cats,
+      gi_agender_desc:gi_questioning_desc,
+      sep = "|",
+      remove = F
+    ) %>%
+    unite(
+      so_cats,
+      so_asexual_desc:so_sgl_desc,
+      sep = "|",
+      remove = F
+    ) %>%
+    mutate(
+      gi_cats = gsub(
+        "(?<![a-zA-Z])NA\\||\\|NA(?![a-zA-Z])|\\|NA$",
+        '',
+        gi_cats,
+        perl = T
+      ),
+      so_cats = gsub(
+        "(?<![a-zA-Z])NA\\||\\|NA(?![a-zA-Z])|\\|NA$",
+        '',
+        so_cats,
+        perl = T
+      ),
+      # redo following chunk to updated format
+      # will need to include new variables
+      gi_check = apply(., MARGIN = 1, function(x) sum(!is.na(x[65:73]))), #65:73, change to beginning w gi_ (minus gi_cats)
+      so_check = apply(., MARGIN = 1, function(x) sum(!is.na(x[77:86]))), #77:86
+      gi_desc = case_when(
+        gi_check == 1 & gi_agender == 1 ~ "Agender",
+        gi_check == 1 & gi_queer == 1 ~ "Genderqueer",
+        gi_check == 1 & gi_man == 1 ~ "Man",
+        gi_check == 1 & gi_nonbinary == 1 ~ "Nonbinary (incl. fluid, nonconforming, etc.)",
+        gi_check == 1 & gi_trans == 1 ~ "Transgender",
+        gi_check == 1 & gi_transman == 1 ~ "Trans Man",
+        gi_check == 1 & gi_transwoman == 1 ~ "Trans Woman",
+        gi_check == 1 & gi_woman == 1 ~ "Woman",
+        gi_check == 1 & gi_questioning == 1 ~ "Questioning or Unsure",
+        gi_check > 1 & str_detect(gi_cats, "Questioning") ~ "Questioning or Unsure",
+        gi_check > 1 &
+          !str_detect(gi_cats, "Questioning") &
+          !str_detect(gi_cats, "NA") ~
+          "Mixture"
+      ),
+      gi_desc_bin_1 = case_when(
+        gi_desc %in% c(
+          "Agender",
+          "Genderqueer",
+          "Mixture",
+          "Nonbinary (incl. fuild, nonconforming, etc.)",
+          "Questioning or Unsure",
+          "Trans Man",
+          "Trans Woman",
+          "Transgender"
+        ) ~
+          "Nonbinary",
+        gi_desc == "Man" ~ "Man",
+        gi_desc == "Woman" ~ "Woman"
+      ),
+      gi_desc_bin_2 = case_when(
+        gi_desc == "Agender" ~ "Agender",
+        gi_desc == "Genderqueer" ~ "Genderqueer",
+        gi_desc == "Man" ~ "Man",
+        gi_desc == "Mixture" ~ "Mixture",
+        gi_desc == "Nonbinary (incl. fuild, nonconforming, etc.)" ~
+          "Nonbinary (incl. fuild, nonconforming, etc.)",
+        gi_desc == "Questioning or Unsure" ~ "Questioning or Unsure",
+        gi_desc %in% c(
+          "Trans Man",
+          "Trans Woman",
+          "Transgender"
+        ) ~
+          "Transgender",
+        gi_desc == "Woman" ~
+          "Woman"
+      ),
+      gi_inout = if_else(
+        gi_desc_bin_1 == "Man" | gi_desc_bin_1 == "Woman",
+        1, 0
+      ),
+      gi_inout_desc = if_else(
+        gi_inout == 1,
+        "Ingroup", "Outgroup"
+      ),
+      so_desc = case_when(
+        so_check == 1 & so_asexual == 1 ~ "Asexual",
+        so_check == 1 & so_bisexual == 1 ~ "Bisexual",
+        so_check == 1 & so_fluid == 1 ~ "Fluid",
+        so_check == 1 & so_gay ==  1 ~ "Gay",
+        so_check == 1 & so_hetero == 1 ~ "Straight or Heterosexual",
+        so_check == 1 & so_lesbian == 1 ~ "Lesbian",
+        so_check == 1 & so_pansexual == 1 ~ "Pansexual",
+        so_check == 1 & so_queer == 1 ~ "Queer",
+        so_check == 1 & so_questioning == 1 ~ "Questioning or Unsure",
+        so_check == 1 & so_sgl == 1 ~ "Same-Gender Loving",
+        so_check > 1 & str_detect(so_cats, "Questioning") ~ "Questioning or Unsure",
+        so_check > 1 &
+          !str_detect(so_cats, "Questioning") &
+          !str_detect(so_cats, "NA") ~
+          "Mixture"
+      ),
+      so_desc_bin = if_else(
+        so_desc == "Straight or Heterosexual",
+        "Straight or Heterosexual", "LGBQ+"
+      ),
+      so_inout = if_else(
+        so_desc_bin == "Straight or Heterosexual",
+        1, 0
+      ),
+      so_inout_desc = if_else(
+        so_inout == 1,
+        "Ingroup", "Outgroup"
+      ),
+      lgbtqia = case_when(#almost certainly computed incorrectly
+        #in all previous iterations
+        gi_desc_bin_1 == "Nonbinary" |
+          so_desc_bin == "LGBQ+" ~
+          "LGBTQIA+",
+        !is.na(gi_desc_bin_1) |
+          !is.na(so_desc_bin) ~
+          "Not LGBTQIA+"
+      ),
+      fy_desc = case_when(#almost certainly computed incorrectly
+        #in at least some previous iterations
+        fy == 0 ~ "Not Foster Youth",
+        fy == 1 ~ "Foster Youth",
+        fy == 99 ~ "Prefer not to Respond"
+      ),
+      af_desc = case_when(#almost certainly computed incorrectly
+        #in at least some previous iterations
+        af == 0 ~ "Not Veteran/Active Duty",
+        af == 1 ~ "Veteran/Active Duty",
+        af == 99 ~ "Prefer not to Respond"
+      ),
+      cd_desc = case_when(
+        cd == 1 ~ "Children",
+        cd == 2 ~ "Other Dependents",
+        cd == 3 ~ "Both",
+        cd == 4 ~ "Neither",
+        cd == 99 ~ "Prefer not to Respond"
+      ),
+      cd_desc_bin = case_when(
+        cd < 4 ~ "Has Children/Dependents",
+        cd == 4 ~ "Does Not Have Children/Dependents",
+        cd == 99 ~ "Prefer not to respond"
+      ),
+      d_desc = case_when(
+        d == 0 ~ "No",
+        d == 1 ~ "Yes",
+        d == 99 ~ "Prefer not to respond"
+      ),
+      da_desc = case_when(
+        da == 0 ~ "No",
+        da == 1 ~ "Yes",
+        da == 2 ~ "I am not aware of such services",
+        da == 99 ~ "Prefer not to respond"
+      ),
+      efl_desc = if_else(
+        efl == 1,
+        "English", "Not English"
+      ),
+      fa_1_desc = if_else(
+        fa_1 == 1,
+        "Receive Aid", "Not Receive Aid"
+      ),
+      fa_2a_desc = case_when(
+        fa_2a == 1 ~ "Receive Loans",
+        fa_2a == 0 ~ "Not Receive Loans",
+        fa_1 == 0 ~ "Not Receive Aid"
+      ),
+      fa_2b_desc = case_when(
+        fa_2b == 1 ~ "Receive Pell",
+        fa_2b == 0 ~ "Not Receive Pell",
+        fa_1 == 0 ~ "Not Receive Aid"
+      ),
+      fa_2c_desc = case_when(
+        fa_2c == 1 ~ "Receive Work-Study",
+        fa_2c == 0 ~ "Not Receive Work-Study",
+        fa_1 == 0 ~ "Not Receive Aid"
+      ),
+      rc_pe_1 = if_else(
+        pe_1 < 7,
+        pe_1, NA_real_
+      ),
+      rc_pe_2 = if_else(
+        pe_2 < 7,
+        pe_2, NA_real_
+      ),
+      pe_1_desc = recode(
+        pe_1,
+        `1` = "Some High School, No Diploma",
+        `2` = "High School Diploma, GED",
+        `3` = "Some College Experience, No Degree",
+        `4` = "2-Year Technical/Associate's Degree",
+        `5` = "4-Year College/University Degree",
+        `6` = "Graduate Degree (Masters, Doctorate, Law)",
+        `7` = "Don't Know/Not Applicable"
+      ),
+      pe_2_desc = recode(
+        pe_2,
+        `1` = "Some High School, No Diploma",
+        `2` = "High School Diploma, GED",
+        `3` = "Some College Experience, No Degree",
+        `4` = "2-Year Technical/Associate's Degree",
+        `5` = "4-Year College/University Degree",
+        `6` = "Graduate Degree (Masters, Doctorate, Law)",
+        `7` = "Don't Know/Not Applicable"
+      ),
+      fg_surv = case_when(
+        pe_1 == 5 | pe_1 == 6 | pe_2 == 5 | pe_2 == 6 ~ "Continuing-Generation",
+        pe_1 < 5 & pe_2 < 5 ~ "First-Generation",
+        pe_2 == 7 & pe_1 < 5 ~ "First-Generation",
+        pe_1 == 7 & pe_2 < 5 ~ "First-Generation",
+        pe_1 < 5 & is.na(pe_2) ~ "First-Generation",
+        pe_2 < 5 & is.na(pe_1) ~ "First-Generation"
+      ),
+      fg_combo = if_else(is.na(first_gen) | first_gen == "Unknown", fg_surv, first_gen
+      ), #firstgen is from records; pe/fg_surv is from survey
+      sss_desc_bin = case_when(
+        sss < 5 ~ "Lower",
+        sss > 4 & sss < 8 ~ "Middle",
+        sss > 7 ~ "Upper"
+      ),
+      fsc_desc = recode(
+        fsc,
+        `1` = "Working Class",
+        `2` = "Lower-Middle Class",
+        `3` = "Middle Class",
+        `4` = "Upper-Middle Class",
+        `5` = "Upper Class"
+      ),
+      fsc_desc_bin = case_when(
+        fsc < 3 ~ "Lower",
+        fsc == 3 ~ "Middle",
+        fsc > 3 ~ "Upper"
+      ),
+      hsa_1_desc = recode(
+        hsa_1,
+        `1` = "Less Advantaged",
+        `2` = "Equally Advantaged",
+        `3` = "More Advantaged"
+      )
+    ) %>%
+    select(
+      id_bl:gi_other_text, gi_agender:gi_pntr,
+      gi_agender_desc:gi_pntr_desc, gi_cats,
+      gi_desc:gi_inout_desc, gii, so, so_other_text,
+      so_asexual, so_bisexual, so_fluid, so_gay:so_pntr,
+      so_asexual_desc:so_pntr_desc, so_cats,
+      so_desc:so_inout_desc, soi, lgbtqia,
+      rei:fy, fy_desc, af, af_desc, cd, cd_desc, cd_desc_bin,
+      cd_a1, cd_a2, d, d_desc, da, da_desc, efl, efl_desc, fl,
+      fa_1:fa_2c, fa_1_desc:fa_2c_desc, pe_1, pe_2,
+      rc_pe_1:fg_surv, fg_combo, sss, sss_desc_bin, fsc,
+      fsc_desc, fsc_desc_bin, hsa_1, hsa_1_desc, hsa_2
+    )
+
+  write_csv(
+    df,
+    paste0(
+      path,
+      name,
+      year,
+      ".csv"
+    )
+  )
 }

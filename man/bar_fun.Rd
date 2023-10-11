@@ -4,17 +4,21 @@
 \alias{bar_fun}
 \title{Bar plot}
 \usage{
-bar_fun(df, year, index, path = "output/EDA/plots/", na.rm = T, ...)
+bar_fun(
+  df,
+  cat_vars,
+  year,
+  path = "output/EDA/plots/barplots/",
+  na.rm = T,
+  ...
+)
 }
 \arguments{
-\item{df1, year, index, path}{Input dataframe, year, and path is default to current}
+\item{df, cat_vars, year, path}{Input dataframe, vector of variable names, year, and path is default to "output/EDA/plots/barplots/"}
 }
 \value{
 bar plots
 }
 \description{
-Bar plot
-}
-\details{
 This function creates an output of bar plots.
 }

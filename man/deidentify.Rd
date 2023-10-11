@@ -4,10 +4,10 @@
 \alias{deidentify}
 \title{Create De-identified file}
 \usage{
-deidentify(df1, df2, year, path = "")
+deidentify(df, path = "", year)
 }
 \arguments{
-\item{df1, df2, year, path}{Input df1 = original key, df2 = new dataframe, year of analysis, and path}
+\item{df, year, path}{Input file, year of analysis, and path}
 }
 \value{
 df, also exported file
@@ -16,7 +16,5 @@ df, also exported file
 Step 4
 }
 \details{
-This function removed identifiers from the dataframe and adds baseline ID and
-cohort column, useful for future analysis. Extraneous 86000000 numbers are
-also removed from the ID column.
+This function removed identifiers from the dataframe.
 }

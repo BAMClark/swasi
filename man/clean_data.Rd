@@ -4,10 +4,10 @@
 \alias{clean_data}
 \title{Clean data}
 \usage{
-clean_data(df, beg_row = 1, end_row = 2)
+clean_data(df, beg_row = 1, end_row = 2, lower_bound = 3, upper_bound = 95)
 }
 \arguments{
-\item{df, beg_row, end_row}{Input dataframe, start row defaults to 1 and end row defaults to 2}
+\item{df, beg_row, end_row, lower_bound, upper_bound}{Input dataframe, start row defaults to 1 and end row defaults to 2, lower bound defaults to 3 and upper to 95}
 }
 \value{
 cleaned dataframe

@@ -4,10 +4,10 @@
 \alias{separate_consent}
 \title{Separate files by consent status}
 \usage{
-separate_consent(df, year, path = "")
+separate_consent(df, year, path = "", consent_status = "")
 }
 \arguments{
-\item{df, year, path}{Input dataframe, lower_bound defaults to 3, upper_bound defaults to 95}
+\item{df, year, path, }{consent_status Input dataframe, year of analysis, path, and consent_status can be specified "yes" or "no" but defaults to all}
 }
 \value{
 df with additional consent variable
