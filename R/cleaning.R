@@ -98,7 +98,7 @@ update_reference <- function(df1, df2, year, period, path = ""){
 
   #create id_bl var in original data
   df_updated <- df2 %>%
-    rename(UOID = uo_id) %>%
+    rename(UOID = uoid) %>%
     mutate(cohort = year,
            id_bl = as.numeric(rownames(df2)) + lastmax,
            UOID = as.numeric(external_reference),
