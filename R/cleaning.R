@@ -81,12 +81,13 @@ clean_data <- function(df, beg_row = 1, end_row = 2, lower_bound = 3, upper_boun
 #' @param df1,df2,year,path Input df1 = original key, df2 = new dataframe, year of analysis, and path to save new files
 #' @return original llave, modifed, and updated llave with added rows and IDs
 #' @export
-update_reference <- function(df1, df2, year, path = ""){
+update_reference <- function(df1, df2, year, period, path = ""){
 
   original_llave <- df1 %>%
     clean_names() %>%
-    rename(uo_id = uoid,
-           id_eoy = id_eoy22)
+    rename(UOID = uoid,
+           id_eoy = id_eoy22,
+           PIDM = pidm)
 
   names(original_llave)[names(original_llave) == "id_eoy"] <- paste0("id_eoy_", year)
 
@@ -116,15 +117,15 @@ update_reference <- function(df1, df2, year, path = ""){
     original_llave,
     paste0(
       path,
-      "reference_key_",
-      year,
+      "SWaSI_llave_pre",
+      period,
       ".csv" ))
 
   write_csv(
     update,
     paste0(
       path,
-      "reference_key_update.csv"
+      "SWaSI_llave.csv"
     ))
 
   df_updated
@@ -148,7 +149,7 @@ deidentify <- function(df, path = "", year) {
       -ip_address,
       -recipient_last_name, -recipient_first_name,
       -recipient_email, -uo_id,
-      -location_latitude, -location_longitude, -pidm
+      -location_latitude, -location_longitude, -pidm, -external_reference
     )
 
   write_csv(

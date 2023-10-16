@@ -4,7 +4,7 @@
 \alias{demos}
 \title{Demographic Tab}
 \usage{
-demos(df1, df2, year, path = "", name = "ds_bl_")
+demos(df1, df2, df3, year, path = "", name = "ds_bl_")
 }
 \arguments{
 \item{df1, df2, year, path, name}{Input df1 = original/consent df, df2 = panel data, year, path is default to current, name is set to "ds_bl_"}

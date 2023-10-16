@@ -4,7 +4,7 @@
 \alias{update_reference}
 \title{Baseline reference file}
 \usage{
-update_reference(df1, df2, year, path = "")
+update_reference(df1, df2, year, period, path = "")
 }
 \arguments{
 \item{df1, df2, year, path}{Input df1 = original key, df2 = new dataframe, year of analysis, and path to save new files}
