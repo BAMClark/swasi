@@ -78,7 +78,7 @@ clean_data <- function(df, beg_row = 1, end_row = 2, lower_bound = 3, upper_boun
 #' key and new dataframe. The new key with added rows and IDs is produced, and
 #' the original key file is modified with the year of update.
 #'
-#' @param df1,df2,year,path Input df1 = original key, df2 = new dataframe, year of analysis, and path to save new files
+#' @param df1,df2,year,period,path Input df1 = original key, df2 = new dataframe, year of analysis, and path to save new files
 #' @return original llave, modifed, and updated llave with added rows and IDs
 #' @export
 update_reference <- function(df1, df2, year, period, path = ""){
@@ -86,10 +86,9 @@ update_reference <- function(df1, df2, year, period, path = ""){
   original_llave <- df1 %>%
     clean_names() %>%
     rename(UOID = uoid,
-           id_eoy = id_eoy22,
            PIDM = pidm)
 
-  names(original_llave)[names(original_llave) == "id_eoy"] <- paste0("id_eoy_", year)
+  #  names(original_llave)[names(original_llave) == "id_eoy"] <- paste0("id_eoy_", year)
 
   lastmax<- max(
     original_llave$id_bl[
@@ -99,15 +98,17 @@ update_reference <- function(df1, df2, year, period, path = ""){
 
   #create id_bl var in original data
   df_updated <- df2 %>%
+    rename(UOID = uo_id) %>%
     mutate(cohort = year,
            id_bl = as.numeric(rownames(df2)) + lastmax,
-           uo_id = as.numeric(external_reference),
-           pidm = as.numeric(pidm)) %>%
-    filter(id_bl < 86000001)
+           UOID = as.numeric(external_reference),
+           PIDM = as.numeric(pidm)) %>%
+    filter(id_bl < 86000001) %>%
+    select(-pidm)
 
 
   id <- df_updated %>%
-    select(uo_id, pidm)
+    select(UOID, PIDM, id_bl, cohort)
 
   update <- bind_rows(original_llave, id) #86 numbers kept in the updated key
 

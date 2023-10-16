@@ -28,7 +28,8 @@ quality_control <- function(df, year, path = "", name = "qc_bl_") {
         !is.na(mccm) ~ "incorrect"
       )
     ) %>%
-    select(-cond)
+    select(-cond, -external_reference, -ip_address,
+           -response_id, -recipient_email, -location_latitude, -location_longitude)
 
 
   write_csv(
@@ -177,7 +178,7 @@ itemify <- function(df, year, path = "", name = "item_bl_") {
 #' @return df with demo vars cleaned up
 #' @export
 demos <- function(df1, df2, df3, year, path = "", name = "ds_bl_") {
-  df <- left_join(df1, df2, by = c("external_reference" = "uoid")) %>%
+  df <- left_join(df1, df2, by = c("external_reference" = "UOID")) %>%
     left_join(., df3, by = c("external_reference")) %>%
     select(id_bl, cohort, orientation_session_desc:ntt, intl, nation_of_citizenship_desc, gi:gii, so:soi, rei, reii, fy:cd, cd_a1, cd_a2, d, da, efl, fl, fa_1, fa_2a:fa_2c, pe_1, pe_2, sss, fsc, hsa_1, hsa_2) %>%
     rename(gi_other_text = gi_10_text,
