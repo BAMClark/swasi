@@ -143,7 +143,7 @@ itemify <- function(df, year, path = "", name = "item_bl_") {
     select(id_bl, cohort,
            au_1:au_5, bu_1:bu_4, l_1:l_3,
            ss_1:ss_4, stt_1:stt_4, gh_1:gh_4,
-           ls_1:ls_5, ps_1:ps_5, se, sas_1:sas_11) %>%
+           ls_1:ls_5, ps_1:ps_4, se, sas_1:sas_11) %>%
     mutate_if(is.character, as.numeric) %>%
     rename(sa_1 = sas_1,
            sa_2 = sas_2,
