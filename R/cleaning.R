@@ -177,18 +177,13 @@ deidentify <- function(df, path = "", year) {
 separate_consent <- function(df, year, path = "", consent_status = "") {
 
   consent_prep <- df %>%
-    mutate(mc_1_providecontact = ifelse(mc_1 == 1 & !is.na(mc_1_1_text),
-                                        "Y", "N")) %>%
-    mutate(c_dat = ifelse(c_dat == 1, "Yes", "No"),
-           mc_1 = ifelse(mc_1 == 1, "Yes", "No"),
-           mc_2 = ifelse(mc_2 == 1, "Yes", "No"))
+    mutate(c_dat = ifelse(c_dat == 1, "Yes", "No"))
 
   consented <- consent_prep %>%
     filter(c_dat == "Yes")
 
   not_consented <- consent_prep %>%
     filter(c_dat != "Yes")
-
 
   write_csv(
     consented,
@@ -215,5 +210,48 @@ separate_consent <- function(df, year, path = "", consent_status = "") {
   } else {
     consent_prep
   }
+}
+
+#' Separate files by mini consent status
+#'
+#' This function separates the dataframe to those who are open to be contacted with info.
+#'
+#' @param df,year,path, consent_status Input dataframe, year of analysis, path, and consent_status can be specified "yes" or "no" but defaults to all
+#' @return df with additional consent variable
+#' @export
+mini_consent<- function(df, year, path = "", name = "mc_bl_") {
+  mc<- bl %>%
+    mutate(
+      mc_1_providecontact = ifelse(mc_1 == 1 & !is.na(mc_1_1_text),
+                                   "Y", "N"),
+      mc_1 = ifelse(mc_1 == 1, "Yes", "No"),
+      mc_2 = ifelse(mc_2 == 1, "Yes", "No"),
+      email = str_to_lower(mc_1_1_text),
+      email = str_squish(email),
+      mc_1 = if_else(
+        mc_1 == 1,
+        "Yes",
+        "No"
+      ),
+      mc_2 = if_else(
+        mc_2 == 1,
+        "Yes",
+        "No"
+      )
+    ) %>%
+    select(
+      id_bl, cohort,
+      mc_1, mc_2, email
+    )
+
+  write_csv(
+    mc,
+    paste0(
+      path,
+      name,
+      year,
+      ".csv"
+    )
+  )
 }
 
