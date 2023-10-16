@@ -179,14 +179,9 @@ itemify <- function(df, year, path = "", name = "item_bl_") {
 demos <- function(df1, df2, df3, year, path = "", name = "ds_bl_") {
   df <- left_join(df1, df2, by = c("external_reference" = "UOID")) %>%
     left_join(., df3, by = c("external_reference")) %>%
-    rename(gi_other_text = gi_10_text,
-           so_other_text = so_10_text) %>%
     #this is new because I want to make sure data types are appropriate for code below
-    mutate_at(c("fy", "af", "cd", "d", "da", "efl", "fa_1", "fa_2a", "fa_2b", "pe_1", "pe_2", "sss", "fsc", "hsa_1"), as.numeric) %>%
     #gender
-    mutate(gi = as.character(gi),
-           so = as.character(so),
-           gi_agender = if_else(str_detect(gi, "Agender"), 1, 0),
+    mutate(gi_agender = if_else(str_detect(gi, "Agender"), 1, 0),
            gi_cisgender = if_else(str_detect(gi, "Cisgender"), 1, 0),
            gi_genderfluid = if_else(str_detect(gi, "Genderfluid"), 1, 0),
            gi_nonconforming = if_else(str_detect(gi, "nonconforming"), 1, 0),
