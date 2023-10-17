@@ -699,7 +699,7 @@ demos <- function(df1, df2, df3, year, path = "", name = "ds_bl_") {
       session_description
     )
 
-  write_csv(
+  write_rds(
     df,
     paste0(
       path,
