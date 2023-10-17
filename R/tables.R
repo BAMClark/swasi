@@ -16,7 +16,7 @@ quality_control <- function(df, year, path = "", name = "qc_bl_") {
       starts_with("t"),
       fq_d, fq_td, mccm,
       pbi_1:pbi_3, pbs_1:pbs_3,
-      status, cond
+      status, cond, completion_status
     ) %>%
     mutate(
       mccm_correct = case_when(
@@ -27,7 +27,7 @@ quality_control <- function(df, year, path = "", name = "qc_bl_") {
         !is.na(mccm) ~ "incorrect"
       )
     ) %>%
-    select(-cond, -external_reference, -ip_address,
+    select(-external_reference, -ip_address,
            -response_id, -recipient_email, -location_latitude, -location_longitude)
 
 
@@ -41,35 +41,6 @@ quality_control <- function(df, year, path = "", name = "qc_bl_") {
     ))
 
 }
-
-#' Manipulate Text Tab
-#'
-#'
-#' This function cleans up text responses.
-#'
-#'
-#' @param df1,df2,year,path,name Input df1 = original/consent df, df2 = panel data, year, path is default to current, name default to "ie_bl_"
-#' @return df with additional intervention condition variable
-#' @export
-manipulate_text<- function(df) {
-
-  df<- gsub("-99", NA, df)
-  df<- gsub("won't", "will not", df) #special case - doesn't expand to "wo not"
-  df<- gsub("can't", "can not", df)
-  df<- gsub("n't", " not", df)
-  df<- gsub("'ll", " will", df)
-  df<- gsub("'re", " are", df)
-  df<- gsub("'ve", " have", df)
-  df<- gsub("'m", " am", df)
-  df<- gsub("'d", " would", df)
-  df<- gsub("'s", "", df) #could be 'is' or possessive - no expansion
-  df<- sapply(df, function(x) gsub("[^a-zA-Z0-9 ]", " ", x))
-  df<- str_squish(df)
-  df<- str_to_lower(df)
-  return(df)
-
-}
-
 
 
 #' Essay Tab
@@ -116,8 +87,8 @@ intervention_essay <- function(df1, df2, year, path = "", name = "ie_bl_") {
     ) %>%
     within(essay[essay == ""]<- NA_character_) %>%
     within(essay[essay == "90oi8plk m"]<- NA_character_) %>%
-    mutate(complete = if_else(!is.na(essay),"Y", "N")) %>%
-    select(id_bl, cohort, cond, cond_desc, tfer, nontrad, ntt, intl, essay, complete)
+    mutate(essay_has_data = if_else(!is.na(essay),"Y", "N")) %>%
+    select(id_bl, cohort, cond, cond_desc, tfer, nontrad, ntt, intl, essay, essay_has_data, completion_status)
 
   write_csv(
     essay_tab,
@@ -143,7 +114,7 @@ itemify <- function(df, year, path = "", name = "item_bl_") {
     select(id_bl, cohort,
            au_1:au_5, bu_1:bu_4, l_1:l_3,
            ss_1:ss_4, stt_1:stt_4, gh_1:gh_4,
-           ls_1:ls_5, ps_1:ps_4, se, sas_1:sas_11) %>%
+           ls_1:ls_5, ps_1:ps_4, se, sas_1:sas_11, completion_status) %>%
     mutate_if(is.character, as.numeric) %>%
     rename(sa_1 = sas_1,
            sa_2 = sas_2,
@@ -178,12 +149,11 @@ itemify <- function(df, year, path = "", name = "item_bl_") {
 #' @export
 demos <- function(df1, df2, df3, year, path = "", name = "ds_bl_") {
 
-  df1[] <- lapply(df1, as.character)
-  df2[] <- lapply(df2, as.character)
-  df3[] <- lapply(df3, as.character)
+  df3 <- df3 %>%
+    select(external_reference, id_bl, cohort)
 
   df <- left_join(df1, df2, by = c("external_reference" = "UOID")) %>%
-    left_join(., df3) %>%
+    left_join(., df3, by = "external_reference") %>%
     #this is new because I want to make sure data types are appropriate for code below
     #gender
     mutate(gi_agender = if_else(str_detect(gi, "Agender"), 1, 0),

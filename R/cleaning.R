@@ -148,8 +148,8 @@ deidentify <- function(df, path = "", year) {
     select(
       -ip_address,
       -recipient_last_name, -recipient_first_name,
-      -recipient_email, -uo_id,
-      -location_latitude, -location_longitude, -pidm, -external_reference
+      -recipient_email, -UOID,
+      -location_latitude, -location_longitude, -PIDM, -external_reference
     )
 
   write_csv(
@@ -253,5 +253,34 @@ mini_consent<- function(df, year, path = "", name = "mc_bl_") {
       ".csv"
     )
   )
+}
+
+
+#' Manipulate Text Tab
+#'
+#'
+#' This function cleans up text responses.
+#'
+#'
+#' @param df1,df2,year,path,name Input df1 = original/consent df, df2 = panel data, year, path is default to current, name default to "ie_bl_"
+#' @return df with additional intervention condition variable
+#' @export
+manipulate_text<- function(df) {
+
+  df<- gsub("-99", NA, df)
+  df<- gsub("won't", "will not", df) #special case - doesn't expand to "wo not"
+  df<- gsub("can't", "can not", df)
+  df<- gsub("n't", " not", df)
+  df<- gsub("'ll", " will", df)
+  df<- gsub("'re", " are", df)
+  df<- gsub("'ve", " have", df)
+  df<- gsub("'m", " am", df)
+  df<- gsub("'d", " would", df)
+  df<- gsub("'s", "", df) #could be 'is' or possessive - no expansion
+  df<- sapply(df, function(x) gsub("[^a-zA-Z0-9 ]", " ", x))
+  df<- str_squish(df)
+  df<- str_to_lower(df)
+  return(df)
+
 }
 
