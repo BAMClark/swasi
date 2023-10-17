@@ -177,8 +177,13 @@ itemify <- function(df, year, path = "", name = "item_bl_") {
 #' @return df with demo vars cleaned up
 #' @export
 demos <- function(df1, df2, df3, year, path = "", name = "ds_bl_") {
+
+  df1[] <- lapply(df1, as.character)
+  df2[] <- lapply(df2, as.character)
+  df3[] <- lapply(df3, as.character)
+
   df <- left_join(df1, df2, by = c("external_reference" = "UOID")) %>%
-    left_join(., df3, by = c("external_reference")) %>%
+    left_join(., df3) %>%
     #this is new because I want to make sure data types are appropriate for code below
     #gender
     mutate(gi_agender = if_else(str_detect(gi, "Agender"), 1, 0),
@@ -354,8 +359,8 @@ demos <- function(df1, df2, df3, year, path = "", name = "ds_bl_") {
                                                            "Same-Gender Loving",
                                                            "Questioning or Exploring") ~ "LGBQ+",
                                             so_desc == "Straight or Heterosexual" ~ "Straight or Heterosexual",
-                                            so_desc == "Mixture" ~ "Mixture",
-                                  levels = c("Straight or Heterosexual", "Mixture", "LGBQ+"))),
+                                            so_desc == "Mixture" ~ "Mixture"),
+                                  levels = c("Straight or Heterosexual", "Mixture", "LGBQ+")),
            so_desc_bin_3 = factor(case_when(so_desc %in% c("Asexual",
                                                            "Bisexual",
                                                            "Fluid or Flexible",
