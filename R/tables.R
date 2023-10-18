@@ -16,7 +16,7 @@ quality_control <- function(df, year, path = "", name = "qc_bl_") {
       starts_with("t"),
       fq_d, fq_td, mccm,
       pbi_1:pbi_3, pbs_1:pbs_3,
-      status, cond, completion_status
+      status, cond, completion_status, c_dat
     ) %>%
     mutate(
       mccm_correct = case_when(
@@ -88,7 +88,7 @@ intervention_essay <- function(df1, df2, year, path = "", name = "ie_bl_") {
     within(essay[essay == ""]<- NA_character_) %>%
     within(essay[essay == "90oi8plk m"]<- NA_character_) %>%
     mutate(essay_has_data = if_else(!is.na(essay),"Y", "N")) %>%
-    select(id_bl, cohort, cond, cond_desc, tfer, nontrad, ntt, intl, essay, essay_has_data, completion_status)
+    select(id_bl, cohort, cond, cond_desc, tfer, nontrad, ntt, intl, essay, essay_has_data, completion_status, c_dat)
 
   write_csv(
     essay_tab,
@@ -114,7 +114,7 @@ itemify <- function(df, year, path = "", name = "item_bl_") {
     select(id_bl, cohort,
            au_1:au_5, bu_1:bu_4, l_1:l_3,
            ss_1:ss_4, stt_1:stt_4, gh_1:gh_4,
-           ls_1:ls_5, ps_1:ps_4, se, sas_1:sas_11, completion_status) %>%
+           ls_1:ls_5, ps_1:ps_4, se, sas_1:sas_11, completion_status, c_dat) %>%
     mutate_if(is.character, as.numeric) %>%
     rename(sa_1 = sas_1,
            sa_2 = sas_2,
@@ -696,7 +696,7 @@ demos <- function(df1, df2, df3, year, path = "", name = "ds_bl_") {
       p1_desc, p1_desc_bin, p2_cats:p2_desc_bin_2, p2_expecting:p2_pntr_desc,
       ra_cats:ra_desc, ra_agnostic:ra_pntr_desc,
       efl, efl_desc,
-      session_description
+      session_description, c_dat
     )
 
   write_rds(
@@ -705,7 +705,7 @@ demos <- function(df1, df2, df3, year, path = "", name = "ds_bl_") {
       path,
       name,
       year,
-      ".csv"
+      ".rds"
     )
   )
 }
