@@ -222,10 +222,10 @@ separate_consent <- function(df, year, path = "", consent_status = "") {
 mini_consent<- function(df, year, path = "", name = "mc_bl_") {
   mc<- bl %>%
     mutate(
-      mc_1_providecontact = ifelse(mc_1 == 1 & !is.na(mc_1_1_text),
-                                   "Y", "N"),
-      mc_1 = ifelse(mc_1 == 1, "Yes", "No"),
-      mc_2 = ifelse(mc_2 == 1, "Yes", "No"),
+      # mc_1_providecontact = ifelse(mc_1 == 1 & !is.na(mc_1_1_text),
+      #                              "Y", "N"),
+      # mc_1 = ifelse(mc_1 == 1, "Yes", "No"),
+      # mc_2 = ifelse(mc_2 == 1, "Yes", "No"),
       email = str_to_lower(mc_1_1_text),
       email = str_squish(email),
       mc_1 = if_else(
