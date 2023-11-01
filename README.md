@@ -13,10 +13,10 @@ The cleaning.R functions are foundational to processing SWāSI data.
 * mini_consent: makes a file identifying who consented to contact 1) by programs and services on the basis of data provided and 2) by researchers about other research opportunities
 * manipulate_text: performs some basic text manipulation that has utility across a variety of use cases
 
-The tables.R functions produce data files that are readily usable for visualization or analysis.
+The tables.R functions produce data files that are readily usable for visualization or analysis. (all need work to bind current data to previous data)
 * quality_control: produces data file containing variables that may be used for checking the quality of data
 * intervention_essay: produces data file containing students' essays (text data) reflecting on intervention materials, intervention condition, and intervention-relevant demographics
-* itemify: produces data file containing item-level data from core psychological measurements (ability uncertainty, belonging uncertainty, loneliness, social support, stereotype threat, general health, life satisfaction, stress, self-esteem, self-assurance, sadness)
+* itemify: produces data file containing item-level data from core psychological measurements: ability uncertainty, belonging uncertainty, loneliness, social support, stereotype threat, general health, life satisfaction, stress, self-esteem, self-assurance, sadness
 * demos: produces data file containing demographics data
 
 The plots.R functions produce rudimentary bar plots and histograms for exploratory data analysis/inspection
