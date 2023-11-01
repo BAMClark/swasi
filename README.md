@@ -5,7 +5,7 @@ Welcome to swasi, a package for working with data from the Student Wellbeing and
 Currently there are 3 groups of functions: cleaning.R, tables.R, and plots.R. 
 
 The cleaning.R functions are foundational to processing SWāSI data.
-* create_codebook: produces a 2-variable table with variable names and descriptions (needs work to include response options)
+* create_codebook: produces a 2-variable table with variable names and descriptions (needs work to include response options, computed variables, and which tables variables end up in)
 * clean_data: removes header rows from Qualtrics output and computes a completion_status variable (consent only, partial, complete)
 * update_reference: updates the key with new arbitrary identifiers
 * deidentify: deidentifies and saves original data for posterity/redundancy
