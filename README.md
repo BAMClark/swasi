@@ -1,6 +1,6 @@
 # swasi
 
-Welcome to the swasi, a package for working with data from the Student Wellbeing and Success Initiative (SWāSI) at the University of Oregon. This package was started by Anwesha Guha as the final capstone project for her Educational Data Science Specialization. It is a work in progress. So far, it is geared toward processing data from the baseline wave of collection. Eventually, it will cover processing end-of-year data and general visualization and analysis. Data used for this package are private.
+Welcome to swasi, a package for working with data from the Student Wellbeing and Success Initiative (SWāSI) at the University of Oregon. This package was started by Anwesha Guha as the final capstone project for her Educational Data Science Specialization. It is a work in progress. So far, it is geared toward processing data from the baseline wave of collection. Eventually, it will cover processing end-of-year data and general visualization and analysis. Data used for this package are private.
 
 Currently there are 3 groups of functions: cleaning.R, tables.R, and plots.R. 
 
