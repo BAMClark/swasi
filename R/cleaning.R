@@ -226,6 +226,7 @@ mini_consent<- function(df, year, path = "", name = "mc_bl_") {
       #                              "Y", "N"),
       # mc_1 = ifelse(mc_1 == 1, "Yes", "No"),
       # mc_2 = ifelse(mc_2 == 1, "Yes", "No"),
+      # demo comment
       email = str_to_lower(mc_1_1_text),
       email = str_squish(email),
       mc_1 = if_else(
